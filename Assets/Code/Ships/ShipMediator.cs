@@ -2,6 +2,7 @@ using pruebasDavid;
 using System;
 using UnityEngine;
 using Input;
+using Ships.CheckLimits;
 
 namespace Ships
 {
@@ -13,18 +14,22 @@ namespace Ships
         [SerializeField] private MovementController _moveController;
 
         private Input.Input _input;
-       
-        public void Configure(Input.Input input, CheckLimits checkLimits)
+
+        [SerializeField] private ShipId _shipId;
+        public string Id => _shipId.Value;
+
+        public void Configure(Input.Input input, CheckLimits.CheckLimits checkLimits,
+                              Vector2 speed, float fireRate, ProjectileId defaultProjectileId)
         {
             _input = input;
-            _moveController.Configure(this, checkLimits);
-            _weaponController.Configure(this);
+            _moveController.Configure(this, checkLimits, speed);
+            _weaponController.Configure(this, fireRate, defaultProjectileId);
         }
         
         private void Update()
         {
             var direction = _input.GetDirection();
-            Movement(direction);
+            _moveController.Move(direction);
             TryShoot();
         }
 
@@ -34,11 +39,6 @@ namespace Ships
             {
                 _weaponController.TryShoot();
             }
-        }
-
-        public void Movement(Vector2 direction)
-        {
-            _moveController.Move(direction);
         }
     }
 }

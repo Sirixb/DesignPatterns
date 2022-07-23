@@ -9,7 +9,6 @@ namespace Ships
     {
         
         [SerializeField] private ProjectileId _projectileId;
-
         public string Id => _projectileId.Value;
 
         [SerializeField] protected Rigidbody2D _rigidbody2D;

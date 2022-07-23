@@ -1,10 +1,7 @@
-﻿
-using UnityEngine;
-
 namespace Ships
 {
-    public interface Ship
+    public interface Ship 
     {
-        
+        string Id { get; }
     }
 }

@@ -26,7 +26,7 @@ namespace Ships
             //return _idToProjectilesPrefabs[id];
             if (!_idToProjectilesPrefabs.TryGetValue(id,out var projectile))
             {
-                throw new Exception("Projectile {id} "+id+" not found");
+                throw new Exception($"Projectile {id} not found");
             }
             return projectile;
         }
