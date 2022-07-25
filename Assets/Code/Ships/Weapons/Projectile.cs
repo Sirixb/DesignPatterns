@@ -34,6 +34,7 @@ namespace Ships
 
         public void OnTriggerEnter2D(Collider2D collision)
         {
+            Debug.Log("Projectile collided: " + collision.name);
             DestroyProjectile();
         }
 
