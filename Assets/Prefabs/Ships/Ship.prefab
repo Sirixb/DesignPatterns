@@ -98,8 +98,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8970a72faada8462386281884829c443, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _movementController: {fileID: 1448509703}
   _weaponController: {fileID: 1448509702}
-  _moveController: {fileID: 1448509703}
   _shipId: {fileID: 11400000, guid: e1f376602cb2f4dc1bb9ff90288ee740, type: 2}
 --- !u!114 &1448509702
 MonoBehaviour:

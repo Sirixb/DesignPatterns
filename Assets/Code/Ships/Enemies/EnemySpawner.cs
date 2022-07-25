@@ -1,6 +1,7 @@
 using System;
 using Input;
 using Ships.CheckLimits;
+using Ships.Common;
 using UnityEngine;
 
 namespace Ships.Enemies
@@ -26,7 +27,7 @@ namespace Ships.Enemies
             {
                 return;
             }
-            
+
             _currentTimeInSeconds += Time.deltaTime;
 
             var spawnConfiguration = _levelConfiguration.SpawnConfigurations[_currentConfigurationIndex];
@@ -45,14 +46,14 @@ namespace Ships.Enemies
             {
                 var shipConfiguration = spawnConfiguration.ShipToSpawnConfigurations[i];
                 var spawnPosition = _spawnPositions[i % _spawnPositions.Length];
-                var ship = _shipFactory.Create(shipConfiguration.ShipId.Value,
-                                               spawnPosition.position,
-                                               spawnPosition.rotation);
-                ship.Configure(new AIInputAdapter(ship), 
-                               new InitialPositionCheckLimits(ship.transform, 10f),
-                               shipConfiguration.Speed,
-                               shipConfiguration.FireRate,
-                               shipConfiguration.DefaultProjectileId);
+                var shipBuilder = _shipFactory.Create(shipConfiguration.ShipId.Value);
+                shipBuilder
+                   .WithPosition(spawnPosition.position)
+                   .WithRotation(spawnPosition.rotation)
+                   .WithInputMode(ShipBuilder.InputMode.Ai)
+                   .WithCheckLimitType(ShipBuilder.CheckLimitTypes.InitialPosition)
+                   .WithConfiguration(shipConfiguration)
+                   .Build();
             }
         }
     }

@@ -1,40 +1,37 @@
-using pruebasDavid;
-using System;
+using Ships.Common;
+using Ships.Weapons;
 using UnityEngine;
-using Input;
-using Ships.CheckLimits;
 
 namespace Ships
 {
     [RequireComponent(typeof(MovementController))]
     [RequireComponent(typeof(WeaponController))]
-    public class ShipMediator : MonoBehaviour , Ship
+    public class ShipMediator : MonoBehaviour, Ship
     {
+        [SerializeField] private MovementController _movementController;
         [SerializeField] private WeaponController _weaponController;
-        [SerializeField] private MovementController _moveController;
-
-        private Input.Input _input;
 
         [SerializeField] private ShipId _shipId;
         public string Id => _shipId.Value;
 
-        public void Configure(Input.Input input, CheckLimits.CheckLimits checkLimits,
-                              Vector2 speed, float fireRate, ProjectileId defaultProjectileId)
+        private Input.Input _input;
+
+        public void Configure(ShipConfiguration configuration)
         {
-            _input = input;
-            _moveController.Configure(this, checkLimits, speed);
-            _weaponController.Configure(this, fireRate, defaultProjectileId);
+            _input = configuration.Input;
+            _movementController.Configure(this, configuration.CheckLimits, configuration.Speed);
+            _weaponController.Configure(this, configuration.FireRate, configuration.DefaultProjectileId);
         }
-        
+
         private void Update()
         {
             var direction = _input.GetDirection();
-            _moveController.Move(direction);
+            _movementController.Move(direction);
             TryShoot();
         }
 
-        public void TryShoot()
-        {    
+        private void TryShoot()
+        {
             if (_input.IsFireActionPressed())
             {
                 _weaponController.TryShoot();
