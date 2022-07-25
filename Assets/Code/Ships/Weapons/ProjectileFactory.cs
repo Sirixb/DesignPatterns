@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using Ships.Weapons;
 using System.Linq;
+using Ships.Common;
 
 namespace Ships
 {
@@ -13,11 +14,14 @@ namespace Ships
             _projectileConfiguration = Configuration;
         }
 
-        public Projectile Create(string id, Vector3 position, Quaternion rotation)
+        public Projectile Create(string id, Vector3 position, Quaternion rotation, Teams team)
         {
             var prefab = _projectileConfiguration.GetProjectileById(id);
 
-            return Object.Instantiate(prefab,position,rotation);
+            var projectile = Object.Instantiate(prefab,position,rotation);
+            projectile.Configure(team);
+            
+            return projectile;
         }
 
       

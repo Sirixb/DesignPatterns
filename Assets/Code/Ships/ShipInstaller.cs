@@ -22,7 +22,8 @@ namespace Ships
         {
             var shipFactory = new ShipFactory(Instantiate(_shipsConfiguration));
             _shipBuilder = shipFactory.Create(_shipConfiguration.ShipId.Value)
-                                               .WithConfiguration(_shipConfiguration);
+                                               .WithConfiguration(_shipConfiguration)
+                                               .WithTeam(Teams.Ally);
 
             SetInput(_shipBuilder);
             //player 1

@@ -1,8 +1,10 @@
-﻿namespace Ships.CheckLimits
+﻿using UnityEngine;
+
+namespace Ships.CheckLimits
 {
     public interface CheckLimits
     {
-        void ClampFinalPosition();
+        Vector2 ClampFinalPosition(Vector2 currentPosition);
     }
-
 }
+

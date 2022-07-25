@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using Ships.Weapons;
+using Ships.Common;
 
 namespace Ships
 {
@@ -13,6 +14,7 @@ namespace Ships
                                                                                                                          
         private string _activeProjectileId;
         private Ship _ship;
+        private Teams _team;
 
 
         private void Awake()
@@ -21,12 +23,12 @@ namespace Ships
             _projectileFactory = new ProjectileFactory(instance);
         }
 
-        public void Configure(Ship ship, float fireRate, ProjectileId defaultProjectileId)
+        public void Configure(Ship ship, float fireRate, ProjectileId defaultProjectileId, Teams team)
         {
             _ship = ship;
             _activeProjectileId = defaultProjectileId.Value;
             _fireRateInSeconds = fireRate;
-
+            _team = team;
         }
 
         public void TryShoot()
@@ -45,7 +47,9 @@ namespace Ships
             var projectile = _projectileFactory
                 .Create(_activeProjectileId, 
                         _projectileSpawnPosition.position, 
-                        _projectileSpawnPosition.rotation);
+                        _projectileSpawnPosition.rotation,
+                        _team
+                        );
             _remainingSecondsToBeAbleToShoot = _fireRateInSeconds;           
         }
 
