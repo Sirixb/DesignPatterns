@@ -146,7 +146,8 @@ namespace Ships.Common
                                                           _shipConfiguration.Health,
                                                           _shipConfiguration.FireRate,
                                                           _shipConfiguration.DefaultProjectileId,
-                                                          _team);
+                                                          _team,
+                                                          _shipConfiguration.Score);
             ship.Configure(shipConfiguration);
             return ship;
         }
