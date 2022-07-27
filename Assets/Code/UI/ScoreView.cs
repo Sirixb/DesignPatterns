@@ -11,10 +11,10 @@ namespace UI
         [SerializeField] private TextMeshProUGUI _text;
 
         private int _currentScore;
-        private int CurrentScore
+        public int CurrentScore
         {
             get => _currentScore;
-            set
+            private set
             {
                 _currentScore = value;
                 _text.SetText(_currentScore.ToString());

@@ -67,6 +67,11 @@ namespace Ships
             {
                 ScoreView.Instance.AddScore(_team, _score); 
                 Destroy(gameObject);
+
+                if(_team == Teams.Ally)
+                {
+                    GameOverView.Instance.Show();
+                }
             }
         }
     }
