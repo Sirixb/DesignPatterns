@@ -34,6 +34,7 @@ namespace Ships.Common
         private JoyButton _joyButton;
         private CheckLimitTypes _checkLimitType;
         private Teams _team;
+        private CheckDestroyLimits _checkDestroyLimits = new DoNotCheckDestroyLimitsStrategy();
 
         public ShipBuilder FromPrefab(ShipMediator prefab)
         {
@@ -62,12 +63,6 @@ namespace Ships.Common
         public ShipBuilder WithInput(Input.Input input)
         {
             _input = input;
-            return this;
-        }
-
-        public ShipBuilder WithCheckLimits(CheckLimits.CheckLimits checkLimits)
-        {
-            _checkLimits = checkLimits;
             return this;
         }
 
@@ -137,6 +132,12 @@ namespace Ships.Common
             }
         }
 
+        public ShipBuilder WithCheckDestroyLimits()
+        {
+            _checkDestroyLimits = new CheckBottomDestroyLimitsStrategy(Camera.main);
+            return this;
+        }
+
         public ShipMediator Build()
         {
             var ship = Object.Instantiate(_prefab, _position, _rotation);
@@ -147,7 +148,8 @@ namespace Ships.Common
                                                           _shipConfiguration.FireRate,
                                                           _shipConfiguration.DefaultProjectileId,
                                                           _team,
-                                                          _shipConfiguration.Score);
+                                                          _shipConfiguration.Score,
+                                                          _checkDestroyLimits);
             ship.Configure(shipConfiguration);
             return ship;
         }

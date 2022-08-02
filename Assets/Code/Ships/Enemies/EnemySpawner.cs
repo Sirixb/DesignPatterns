@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Common;
 using Ships.Common;
 using UnityEngine;
 
@@ -15,11 +16,8 @@ namespace Ships.Enemies
         private int _currentConfigurationIndex;
         private bool _canSpawn;
 
-        private List<ShipMediator> _spawnedShips;
-
         private void Awake()
         {
-            _spawnedShips = new List<ShipMediator>();
             _shipFactory = new ShipFactory(Instantiate(_shipsConfiguration));
         }
 
@@ -34,11 +32,6 @@ namespace Ships.Enemies
             _currentTimeInSeconds = 0f;
             _currentConfigurationIndex = 0;
 
-            foreach (var shipMediator in _spawnedShips)
-            {
-                Destroy(shipMediator.gameObject);
-            }
-            _spawnedShips.Clear();
         }
         
         private void Update()
@@ -79,12 +72,10 @@ namespace Ships.Enemies
                                   .WithCheckLimitType(ShipBuilder.CheckLimitTypes.InitialPosition)
                                   .WithConfiguration(shipConfiguration)
                                   .WithTeam(Teams.Enemy)
+                                  .WithCheckDestroyLimits()
                                   .Build();
-                _spawnedShips.Add(ship);
             }
         }
 
-
-      
     }
 }

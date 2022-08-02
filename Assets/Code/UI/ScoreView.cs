@@ -1,10 +1,11 @@
 using Ships.Common;
 using TMPro;
 using UnityEngine;
+using Common;
 
 namespace UI
 {
-    public class ScoreView : MonoBehaviour
+    public class ScoreView : MonoBehaviour, EventObserver
     {
         public static ScoreView Instance { get; private set; }
 
@@ -30,14 +31,32 @@ namespace UI
             }
             Instance = this;
         }
+        private void Start()
+        {
+            EventQueue.Instance.Subscribe(EventIds.ShipDestroyed,this);
+        }
+        private void OnDestroy()
+        {
+            EventQueue.Instance.Unsubscribe(EventIds.ShipDestroyed, this);
 
-
+        }
         public void Reset()
         {
             CurrentScore = 0;
         }
         
-        public void AddScore(Teams killedTeam, int scoreToAdd)
+        public void Process(EventData eventData)
+        {
+            if (eventData.EventId != EventIds.ShipDestroyed)
+            {
+                return;
+            }
+
+            var shipDestroyedEventData = (ShipDestroyedEventData)eventData;
+            AddScore(shipDestroyedEventData.Team, shipDestroyedEventData.ScoreToAdd);
+        }
+        
+        private void AddScore(Teams killedTeam, int scoreToAdd)
         {
             if (killedTeam != Teams.Enemy)
             {

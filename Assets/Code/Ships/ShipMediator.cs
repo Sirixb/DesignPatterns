@@ -1,3 +1,4 @@
+using Common;
 using Ships.Common;
 using Ships.Weapons;
 using UI;
@@ -7,7 +8,7 @@ namespace Ships
 {
     [RequireComponent(typeof(MovementController))]
     [RequireComponent(typeof(WeaponController))]
-    public class ShipMediator : MonoBehaviour, Ship
+    public class ShipMediator : MonoBehaviour, Ship ,EventObserver
     {
         [SerializeField] private MovementController _movementController;
         [SerializeField] private WeaponController _weaponController;
@@ -19,7 +20,16 @@ namespace Ships
         private Input.Input _input;
         private Teams _team;
         private int _score;
+        private CheckDestroyLimits _checkDestroyLimits;
 
+        private void Start()
+        {
+            EventQueue.Instance.Subscribe(EventIds.GameOver, this);
+        }
+        private void OnDestroy()
+        {
+            EventQueue.Instance.Unsubscribe(EventIds.GameOver, this);
+        }
         public void Configure(ShipConfiguration configuration)
         {
             _input = configuration.Input;
@@ -28,6 +38,7 @@ namespace Ships
             _healthController.Configure(this, configuration.Health, configuration.Team);
             _team = configuration.Team;
             _score = configuration.Score;
+            _checkDestroyLimits = configuration.CheckDestroyLimits;
         }
 
         private void FixedUpdate()
@@ -39,6 +50,20 @@ namespace Ships
         private void Update()
         {
             TryShoot();
+            CheckDestroyLimits();
+        }
+
+        public void CheckDestroyLimits()
+        {
+            if (_checkDestroyLimits.IsInsideTheLimits(transform.position))
+            {
+                return;
+            }
+
+            Destroy(gameObject);
+
+            var shipDestroyedEventData = new ShipDestroyedEventData(0, _team);
+            EventQueue.Instance.EnqueueEvent(shipDestroyedEventData);
         }
 
         private void TryShoot()
@@ -58,21 +83,27 @@ namespace Ships
             }
 
             damageable.AddDamage(1);
-            Debug.Log("Ship collided: " + collision.name);
         }
         
         public void OnDamageReceived(bool isDeath)
         {
             if (isDeath)
             {
-                ScoreView.Instance.AddScore(_team, _score); 
                 Destroy(gameObject);
 
-                if(_team == Teams.Ally)
-                {
-                    GameOverView.Instance.Show();
-                }
+                var shipDestroyedEventData = new ShipDestroyedEventData(_score,_team);
+                EventQueue.Instance.EnqueueEvent(shipDestroyedEventData);
             }
+        }
+
+        public void Process(EventData eventData)
+        {
+            if (eventData.EventId != EventIds.GameOver)
+            {
+                return;
+            }
+
+            Destroy(gameObject);
         }
     }
 }

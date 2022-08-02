@@ -48,7 +48,7 @@ namespace Ships
             }
 
             damageable.AddDamage(1);
-            Debug.Log("Projectile collided: " + collision.name);
+            //Debug.Log("Projectile collided: " + collision.name);
         }
 
         private IEnumerator DestroyIn(float seconds)

@@ -42,6 +42,7 @@ namespace Patterns.Decoupling.EventQueue
 
             _currentEvents.Clear();
 
+            //para procesar los nuevos eventos en el mismo frame y no en el siguiente
             /*if (_nextEvents.Count > 0)
             {
                 ProcessEvents();
