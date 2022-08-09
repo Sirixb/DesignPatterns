@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Ships.Common;
 using Common;
+using Battle;
 
 namespace UI
 {
@@ -21,30 +22,16 @@ namespace UI
 
         private void Start()
         {
-            EventQueue.Instance.Subscribe(EventIds.ShipDestroyed, this);
             EventQueue.Instance.Subscribe(EventIds.GameOver, this);
             gameObject.SetActive(false);
         }
         private void OnDestroy()
         {
-            EventQueue.Instance.Unsubscribe(EventIds.ShipDestroyed, this);
             EventQueue.Instance.Unsubscribe(EventIds.GameOver, this);
         }
 
         public void Process(EventData eventData)
         {
-            if (eventData.EventId == EventIds.ShipDestroyed)
-            {
-                var shipDestroyedEventData = (ShipDestroyedEventData)eventData;
-                if (shipDestroyedEventData.Team == Teams.Ally)
-                {
-                    _gameFacade.StopBattle();
-                    EventQueue.Instance.EnqueueEvent(new EventData(EventIds.GameOver));
-                }
-                return;
-            }
-
-
             if (eventData.EventId == EventIds.GameOver)
             {
                 _scoreText.SetText(ScoreView.Instance.CurrentScore.ToString());

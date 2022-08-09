@@ -1,19 +1,20 @@
-﻿using Ships.Enemies;
+﻿using Ships;
+using Ships.Enemies;
 using UI;
 using UnityEngine;
 
-namespace Ships
+namespace Battle
 {
     public class GameFacade : MonoBehaviour
     {
-        [SerializeField] private ScreenFade _screenFade;
+        [SerializeField] private LoadingScreen _screenFade;
         [SerializeField] private ShipInstaller _shipInstaller;
         [SerializeField] private EnemySpawner _enemySpawner;
-
-        public int score;
+        [SerializeField] private GameStateController _gameState;
 
         public void StartBattle()
         {
+            _gameState.Reset();
             ScoreView.Instance.Reset();
             _enemySpawner.StartSpawn();
             _shipInstaller.SpawnUserShip();
