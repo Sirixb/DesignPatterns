@@ -2333,10 +2333,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87f45f66f87c06347b8ca2a6772fdb48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _screenFade: {fileID: 1400018889}
   _shipInstaller: {fileID: 1254279385}
   _enemySpawner: {fileID: 454898992}
-  _gameState: {fileID: 1053147838}
+  _gameStateController: {fileID: 1053147838}
 --- !u!4 &1208870968
 Transform:
   m_ObjectHideFlags: 0
@@ -2507,17 +2506,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1400018889 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7558823663697607754, guid: 1de65d5bf78574c48a34ec15bc1f8a7b, type: 3}
-  m_PrefabInstance: {fileID: 7558823662882761603}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c80b29c47fce443dbf3dd4c05441ad06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1445122800
@@ -3327,6 +3315,10 @@ PrefabInstance:
     - target: {fileID: 7558823663697607750, guid: 1de65d5bf78574c48a34ec15bc1f8a7b, type: 3}
       propertyPath: m_Name
       value: LoadingScreen
+      objectReference: {fileID: 0}
+    - target: {fileID: 7558823663697607750, guid: 1de65d5bf78574c48a34ec15bc1f8a7b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7558823663697607754, guid: 1de65d5bf78574c48a34ec15bc1f8a7b, type: 3}
       propertyPath: _screenFadeImage

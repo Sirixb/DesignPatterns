@@ -1,30 +1,39 @@
+using Patterns.Decoupling.ServiceLocator;
 using System.Threading.Tasks;
 using UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 
-namespace Core
+namespace Core.Installers
 {
     public class GlobalInstaller : MonoBehaviour
     {
-        //private async void Start()
-        //{
-        //    DontDestroyOnLoad(LoadingScreen.Instance.gameObject);
-        //    LoadingScreen.Instance.Show();
-        //    await LoadScene("Game");
-        //    LoadingScreen.Instance.Hide();
-        //}
+        [SerializeField] private Installer[] _installers;
+        private async void Start()
+        {
+            NewMethod();
 
-        //private async Task LoadScene(string sceneName)
-        //{
-        //    var loadSceneAsync = SceneManager.LoadSceneAsync(sceneName);
+            await LoadScene("Game");
+            ServiceLocator.Instance.GetService<LoadingScreen>().Hide();
+        }
 
-        //    while (!loadSceneAsync.isDone)
-        //    {
-        //        await Task.Yield();
-        //    }
-        //    await Task.Yield();
-        //}
+        private void NewMethod()
+        {
+            foreach (var installer in _installers)
+            {
+                installer.Install(ServiceLocator.Instance);
+            }
+        }
+
+        private async Task LoadScene(string sceneName)
+        {
+            var loadSceneAsync = SceneManager.LoadSceneAsync(sceneName);
+
+            while (!loadSceneAsync.isDone)
+            {
+                await Task.Yield();
+            }
+            await Task.Yield();
+        }
     }
 }

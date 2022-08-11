@@ -1,4 +1,5 @@
-﻿using Ships;
+﻿using Patterns.Decoupling.ServiceLocator;
+using Ships;
 using Ships.Enemies;
 using UI;
 using UnityEngine;
@@ -7,23 +8,22 @@ namespace Battle
 {
     public class GameFacade : MonoBehaviour
     {
-        [SerializeField] private LoadingScreen _screenFade;
         [SerializeField] private ShipInstaller _shipInstaller;
         [SerializeField] private EnemySpawner _enemySpawner;
-        [SerializeField] private GameStateController _gameState;
+        [SerializeField] private GameStateController _gameStateController;
 
         public void StartBattle()
         {
-            _gameState.Reset();
+            _gameStateController.Reset();
             ScoreView.Instance.Reset();
             _enemySpawner.StartSpawn();
             _shipInstaller.SpawnUserShip();
-            _screenFade.Hide();
+            ServiceLocator.Instance.GetService<LoadingScreen>().Hide();
         }
 
         public void StopBattle()
         {
-            _screenFade.Show();
+            ServiceLocator.Instance.GetService<LoadingScreen>().Show();
             _enemySpawner.StopAndReset();
         }
     }
