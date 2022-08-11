@@ -1220,6 +1220,7 @@ GameObject:
   - component: {fileID: 494802835}
   - component: {fileID: 494802837}
   - component: {fileID: 494802836}
+  - component: {fileID: 494802838}
   m_Layer: 0
   m_Name: GameInstaller
   m_TagString: Untagged
@@ -1268,6 +1269,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _installers:
   - {fileID: 494802836}
+  - {fileID: 494802838}
+--- !u!114 &494802838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 494802834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88eceec95404be24785c12aacdfcef97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameFacade: {fileID: 1208870967}
 --- !u!1 &508121852
 GameObject:
   m_ObjectHideFlags: 0
