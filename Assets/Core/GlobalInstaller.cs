@@ -9,15 +9,20 @@ namespace Core.Installers
     public class GlobalInstaller : MonoBehaviour
     {
         [SerializeField] private Installer[] _installers;
+        
         private async void Start()
         {
-            NewMethod();
+            InstallDependencies();
+            await LoadNextScene();
+        }
 
+        private async Task LoadNextScene()
+        {
             await LoadScene("Game");
             ServiceLocator.Instance.GetService<LoadingScreen>().Hide();
         }
 
-        private void NewMethod()
+        private void InstallDependencies()
         {
             foreach (var installer in _installers)
             {
