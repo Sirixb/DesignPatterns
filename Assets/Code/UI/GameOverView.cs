@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using Ships.Common;
 using Common;
 using Battle;
+using Patterns.Decoupling.ServiceLocator;
 
 namespace UI
 {
@@ -22,12 +23,12 @@ namespace UI
 
         private void Start()
         {
-            EventQueue.Instance.Subscribe(EventIds.GameOver, this);
+            ServiceLocator.Instance.GetService<EventQueue>().Subscribe(EventIds.GameOver, this);
             gameObject.SetActive(false);
         }
         private void OnDestroy()
         {
-            EventQueue.Instance.Unsubscribe(EventIds.GameOver, this);
+            ServiceLocator.Instance.GetService<EventQueue>().Unsubscribe(EventIds.GameOver, this);
         }
 
         public void Process(EventData eventData)

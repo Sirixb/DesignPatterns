@@ -2,6 +2,7 @@ using Ships.Common;
 using TMPro;
 using UnityEngine;
 using Common;
+using Patterns.Decoupling.ServiceLocator;
 
 namespace UI
 {
@@ -33,11 +34,11 @@ namespace UI
         }
         private void Start()
         {
-            EventQueue.Instance.Subscribe(EventIds.ShipDestroyed,this);
+            ServiceLocator.Instance.GetService<EventQueue>().Subscribe(EventIds.ShipDestroyed,this);
         }
         private void OnDestroy()
         {
-            EventQueue.Instance.Unsubscribe(EventIds.ShipDestroyed, this);
+            ServiceLocator.Instance.GetService<EventQueue>().Unsubscribe(EventIds.ShipDestroyed, this);
 
         }
         public void Reset()

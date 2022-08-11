@@ -1,6 +1,7 @@
 using System;
 using Battle;
 using Common;
+using Patterns.Decoupling.ServiceLocator;
 using Ships.Common;
 using TMPro;
 using UnityEngine;
@@ -22,12 +23,12 @@ namespace UI
         private void Start()
         {
             gameObject.SetActive(false);
-            EventQueue.Instance.Subscribe(EventIds.Victory, this);
+            ServiceLocator.Instance.GetService<EventQueue>().Subscribe(EventIds.Victory, this);
         }
 
         private void OnDestroy()
         {
-            EventQueue.Instance.Unsubscribe(EventIds.Victory, this);
+            ServiceLocator.Instance.GetService<EventQueue>().Unsubscribe(EventIds.Victory, this);
         }
 
         public void Process(EventData eventData)

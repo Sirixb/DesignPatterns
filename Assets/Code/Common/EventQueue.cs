@@ -5,7 +5,6 @@ namespace Common
 {
     public class EventQueue : MonoBehaviour
     {
-        public static EventQueue Instance { get; private set; }
 
         private Queue<EventData> _currentEvents;
         private Queue<EventData> _nextEvents;
@@ -14,7 +13,6 @@ namespace Common
 
         private void Awake()
         {
-            Instance = this;
 
             _currentEvents = new Queue<EventData>();
             _nextEvents = new Queue<EventData>();
