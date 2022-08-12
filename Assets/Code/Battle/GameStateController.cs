@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Battle.GameStates;
+using Patterns.Decoupling.ServiceLocator;
 using UnityEngine;
 
 namespace Battle
@@ -21,19 +22,17 @@ namespace Battle
 
         private Dictionary<GameStates, GameState> _idToState;
 
-        private void Awake()
+        private void Start()
         {
+            var gameFacade = ServiceLocator.Instance.GetService<GameFacade>();
             _idToState =
                 new Dictionary<GameStates, GameState>
                 {
                     {GameStates.Playing, new PlayingState()},
-                    {GameStates.GameOver, new GameOverState(_gameFacade)},
-                    {GameStates.Victory, new VictoryState(_gameFacade)}
+                    {GameStates.GameOver, new GameOverState(gameFacade)},
+                    {GameStates.Victory, new VictoryState(gameFacade)}
                 };
-        }
 
-        private void Start()
-        {
             _currentState = GetState(GameStates.Playing);
             _currentState.Start(ChangeToNextState);
         }

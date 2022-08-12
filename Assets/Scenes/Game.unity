@@ -178,7 +178,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scoreText: {fileID: 1012645016}
   _restartButton: {fileID: 880531042}
-  _gameFacade: {fileID: 1208870967}
 --- !u!114 &40648492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1219,7 +1218,6 @@ GameObject:
   m_Component:
   - component: {fileID: 494802835}
   - component: {fileID: 494802837}
-  - component: {fileID: 494802836}
   - component: {fileID: 494802838}
   m_Layer: 0
   m_Name: GameInstaller
@@ -1240,21 +1238,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &494802836
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 494802834}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1267410bd5666d41b9d636c6e0a3d66, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _EventQueue: {fileID: 1651239476}
 --- !u!114 &494802837
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1268,8 +1253,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _installers:
-  - {fileID: 494802836}
   - {fileID: 494802838}
+  _scoreView: {fileID: 328740134}
+  _shipInstaller: {fileID: 1254279385}
+  _enemySpawner: {fileID: 454898992}
+  _gameStateController: {fileID: 1053147838}
 --- !u!114 &494802838
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2250,7 +2238,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82aaa7be50a76d541a9c9df61ce6e3f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gameFacade: {fileID: 1208870967}
 --- !u!4 &1053147839
 Transform:
   m_ObjectHideFlags: 0
@@ -2263,7 +2250,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1168655052
 PrefabInstance:
@@ -2516,7 +2503,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _startBattleButton: {fileID: 734417379}
   _stopBattleButton: {fileID: 451888160}
-  _gameFacade: {fileID: 1208870967}
 --- !u!1 &1254279384
 GameObject:
   m_ObjectHideFlags: 0
@@ -2865,49 +2851,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!1 &1651239475
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1651239477}
-  - component: {fileID: 1651239476}
-  m_Layer: 0
-  m_Name: EventQueue
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1651239476
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1651239475}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d09e0e5029feb54183abbb54fdbffec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &1651239477
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1651239475}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 951.20776, y: 559.6674, z: -8.30025}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1737149069
 GameObject:
   m_ObjectHideFlags: 0
@@ -2964,7 +2907,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scoreText: {fileID: 146181681}
   _restartButton: {fileID: 508121854}
-  _gameFacade: {fileID: 1208870967}
 --- !u!114 &1737149072
 MonoBehaviour:
   m_ObjectHideFlags: 0

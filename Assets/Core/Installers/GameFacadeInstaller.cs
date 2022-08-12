@@ -6,11 +6,16 @@ namespace Core.Installers
 {
     public class GameFacadeInstaller : Installer
     {
-        [SerializeField] private GameFacade _gameFacade;
+        [SerializeField] private GameFacadeImpl _gameFacade;
 
         public override void Install(ServiceLocator serviceLocator)
         {
-            serviceLocator.RegisterService(_gameFacade);
+            serviceLocator.RegisterService<GameFacade>(_gameFacade);
+        }
+
+        private void OnDestroy()
+        {
+            ServiceLocator.Instance.UnregisterService<GameFacade>();
         }
     }
 }

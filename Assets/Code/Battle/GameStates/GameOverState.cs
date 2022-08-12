@@ -15,8 +15,8 @@ namespace Battle.GameStates
 
         public void Start(Action<GameStateController.GameStates> onEndedCallback)
         {
-            _gameFacade.StopBattle();
-            ServiceLocator.Instance.GetService<EventQueue>().EnqueueEvent(new EventData(EventIds.GameOver));
+           _gameFacade.StopBattle();
+           ServiceLocator.Instance.GetService<EventQueue>().EnqueueEvent(new EventData(EventIds.GameOver));
         }
 
         public void Stop()

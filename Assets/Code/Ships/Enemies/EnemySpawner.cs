@@ -60,7 +60,7 @@ namespace Ships.Enemies
             
             if (_currentConfigurationIndex >= _levelConfiguration.SpawnConfigurations.Length)
             {
-                ServiceLocator.Instance.GetService<EventQueue>().EnqueueEvent(new EventData(EventIds.AllShipSpawned));
+               ServiceLocator.Instance.GetService<EventQueue>().EnqueueEvent(new EventData(EventIds.AllShipSpawned));
             }
         }
 
@@ -80,7 +80,7 @@ namespace Ships.Enemies
                                   .WithTeam(Teams.Enemy)
                                   .WithCheckDestroyLimits()
                                   .Build();
-                ServiceLocator.Instance.GetService<EventQueue>().EnqueueEvent(new EventData(EventIds.ShipSpawned));
+               ServiceLocator.Instance.GetService<EventQueue>().EnqueueEvent(new EventData(EventIds.ShipSpawned));
             }
         }
 

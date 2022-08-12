@@ -16,17 +16,17 @@ namespace Battle.GameStates
             _onEndedCallback = onEndedCallback;
             _aliveShips = 0;
             _allShipSpawned = false;
-            ServiceLocator.Instance.GetService<EventQueue>().Subscribe(EventIds.ShipDestroyed, this);
-            ServiceLocator.Instance.GetService<EventQueue>().Subscribe(EventIds.ShipSpawned, this);
-            ServiceLocator.Instance.GetService<EventQueue>().Subscribe(EventIds.AllShipSpawned, this);
+           ServiceLocator.Instance.GetService<EventQueue>().Subscribe(EventIds.ShipDestroyed, this);
+           ServiceLocator.Instance.GetService<EventQueue>().Subscribe(EventIds.ShipSpawned, this);
+           ServiceLocator.Instance.GetService<EventQueue>().Subscribe(EventIds.AllShipSpawned, this);
 
         }
 
         public void Stop()
         {
-            ServiceLocator.Instance.GetService<EventQueue>().Unsubscribe(EventIds.ShipDestroyed, this);
-            ServiceLocator.Instance.GetService<EventQueue>().Unsubscribe(EventIds.ShipSpawned, this);
-            ServiceLocator.Instance.GetService<EventQueue>().Unsubscribe(EventIds.AllShipSpawned, this);
+           ServiceLocator.Instance.GetService<EventQueue>().Unsubscribe(EventIds.ShipDestroyed, this);
+           ServiceLocator.Instance.GetService<EventQueue>().Unsubscribe(EventIds.ShipSpawned, this);
+           ServiceLocator.Instance.GetService<EventQueue>().Unsubscribe(EventIds.AllShipSpawned, this);
 
         }
 

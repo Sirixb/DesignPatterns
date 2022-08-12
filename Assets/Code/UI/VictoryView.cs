@@ -13,7 +13,7 @@ namespace UI
     {
         [SerializeField] private TextMeshProUGUI _scoreText;
         [SerializeField] private Button _restartButton;
-        [SerializeField] private GameFacade _gameFacade;
+        //[SerializeField] private GameFacade _gameFacade;
 
         private void Awake()
         {
@@ -23,12 +23,12 @@ namespace UI
         private void Start()
         {
             gameObject.SetActive(false);
-            ServiceLocator.Instance.GetService<EventQueue>().Subscribe(EventIds.Victory, this);
+           ServiceLocator.Instance.GetService<EventQueue>().Subscribe(EventIds.Victory, this);
         }
 
         private void OnDestroy()
         {
-            ServiceLocator.Instance.GetService<EventQueue>().Unsubscribe(EventIds.Victory, this);
+           ServiceLocator.Instance.GetService<EventQueue>().Unsubscribe(EventIds.Victory, this);
         }
 
         public void Process(EventData eventData)
@@ -42,7 +42,7 @@ namespace UI
 
         private void RestartGame()
         {
-            _gameFacade.StartBattle();
+            ServiceLocator.Instance.GetService<GameFacade>().StartBattle();
             gameObject.SetActive(false);
         }
     }

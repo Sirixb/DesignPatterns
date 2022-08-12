@@ -1,11 +1,10 @@
-﻿using Patterns.Decoupling.ServiceLocator;
+ using Patterns.Decoupling.ServiceLocator;
 using UnityEngine;
 
 namespace Core.Installers
 {
-    public class GameInstaller : MonoBehaviour
+    public abstract class GeneralInstaller : MonoBehaviour
     {
-
         [SerializeField] private Installer[] _installers;
 
         private void Awake()
@@ -13,10 +12,12 @@ namespace Core.Installers
             InstallDependencies();
         }
 
-        //private async void Start()
-        //{
-        //    InstallDependencies();
-        //}
+        private void Start()
+        {
+            DoStart();
+        }
+
+        protected abstract void DoStart();
 
         private void InstallDependencies()
         {
@@ -24,7 +25,9 @@ namespace Core.Installers
             {
                 installer.Install(ServiceLocator.Instance);
             }
+            DoInstallDependencies();
         }
 
+        protected abstract void DoInstallDependencies();
     }
 }

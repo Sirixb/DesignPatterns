@@ -6,11 +6,12 @@ namespace Core.Installers
 {
     public class EventQueueInstaller: Installer
     {
-        [SerializeField] private EventQueue _EventQueue;
+        [SerializeField] private EventQueueImpl _EventQueue;
 
         public override void Install(ServiceLocator serviceLocator)
         {
-            serviceLocator.RegisterService(_EventQueue);
+            DontDestroyOnLoad(_EventQueue.gameObject);
+            serviceLocator.RegisterService<EventQueue>(_EventQueue);
         }
     }
 }

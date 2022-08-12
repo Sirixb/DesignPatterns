@@ -34,11 +34,11 @@ namespace UI
         }
         private void Start()
         {
-            ServiceLocator.Instance.GetService<EventQueue>().Subscribe(EventIds.ShipDestroyed,this);
+           ServiceLocator.Instance.GetService<EventQueue>().Subscribe(EventIds.ShipDestroyed,this);
         }
         private void OnDestroy()
         {
-            ServiceLocator.Instance.GetService<EventQueue>().Unsubscribe(EventIds.ShipDestroyed, this);
+           ServiceLocator.Instance.GetService<EventQueue>().Unsubscribe(EventIds.ShipDestroyed, this);
 
         }
         public void Reset()

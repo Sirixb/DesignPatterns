@@ -1,5 +1,6 @@
 using System;
 using Battle;
+using Patterns.Decoupling.ServiceLocator;
 using Ships;
 using Ships.Enemies;
 using UnityEngine;
@@ -12,7 +13,7 @@ namespace UI
         [SerializeField] private Button _startBattleButton;
         [SerializeField] private Button _stopBattleButton;
 
-        [SerializeField] private GameFacade _gameFacade;
+        //[SerializeField] private GameFacade _gameFacade;
 
         private void Awake()
         {
@@ -22,12 +23,12 @@ namespace UI
 
         private void StartBattle()
         {
-            _gameFacade.StartBattle();
+            ServiceLocator.Instance.GetService<GameFacade>().StartBattle();
         }
 
         private void StopBattle()
         {
-            _gameFacade.StopBattle();
+            ServiceLocator.Instance.GetService<GameFacade>().StopBattle();
         }
     }
 }
