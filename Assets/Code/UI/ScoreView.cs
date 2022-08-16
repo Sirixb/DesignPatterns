@@ -8,7 +8,6 @@ namespace UI
 {
     public class ScoreView : MonoBehaviour, EventObserver
     {
-        public static ScoreView Instance { get; private set; }
 
         [SerializeField] private TextMeshProUGUI _text;
 
@@ -23,15 +22,6 @@ namespace UI
             }
         }
 
-        private void Awake()
-        {
-            if (Instance != null)
-            {
-                Destroy(gameObject);
-                return;
-            }
-            Instance = this;
-        }
         private void Start()
         {
            ServiceLocator.Instance.GetService<EventQueue>().Subscribe(EventIds.ShipDestroyed,this);

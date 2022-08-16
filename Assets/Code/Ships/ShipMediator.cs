@@ -96,7 +96,7 @@ namespace Ships
                 Destroy(gameObject);
 
                 var shipDestroyedEventData = new ShipDestroyedEventData(_score,_team);
-               ServiceLocator.Instance.GetService<EventQueue>().EnqueueEvent(shipDestroyedEventData);
+                ServiceLocator.Instance.GetService<EventQueue>().EnqueueEvent(shipDestroyedEventData);
             }
         }
 

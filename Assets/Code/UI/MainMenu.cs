@@ -1,9 +1,7 @@
-using System;
-using System.Threading.Tasks;
 using Common.Commands;
+using Patterns.Behaviour.Command;
 using Patterns.Decoupling.ServiceLocator;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace UI
@@ -12,9 +10,15 @@ namespace UI
     {
         [SerializeField] private Button _startGameButton;
 
-        private void Awake()
+        private void Start()
         {
-            _startGameButton.onClick.AddListener(new LoadSceneCommand("Game").Execute);
+            _startGameButton.onClick.AddListener(OnStartButtonPressed);
+        }
+
+        public void OnStartButtonPressed()
+        {
+            ServiceLocator.Instance.GetService<CommandQueue>()
+                         .AddCommand(new LoadGameSceneCommand());
         }
 
         

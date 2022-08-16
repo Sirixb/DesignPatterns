@@ -1,20 +1,23 @@
+using Patterns.Behaviour.Command;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace UI
 {
-    public class LoadingScreen : MonoBehaviour
+    public class LoadingScreen : MonoBehaviour 
     {
         [SerializeField] private Image _screenFadeImage;
 
         public void Show()
         {
-            _screenFadeImage.enabled = true;
+            gameObject.SetActive(true);
         }
         
         public void Hide()
         {
-            _screenFadeImage.enabled = false;
+            gameObject.SetActive(false);
         }
+
     }
 }

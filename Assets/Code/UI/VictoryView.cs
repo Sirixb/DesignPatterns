@@ -1,8 +1,8 @@
-using System;
 using Battle;
 using Common;
+using Common.Commands;
+using Patterns.Behaviour.Command;
 using Patterns.Decoupling.ServiceLocator;
-using Ships.Common;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,36 +13,44 @@ namespace UI
     {
         [SerializeField] private TextMeshProUGUI _scoreText;
         [SerializeField] private Button _restartButton;
-        //[SerializeField] private GameFacade _gameFacade;
+        [SerializeField] private Button _backToMenuButton;
 
         private void Awake()
         {
-            _restartButton.onClick.AddListener(RestartGame);
+            _restartButton.onClick.AddListener(RestartGame); 
+            _backToMenuButton.onClick.AddListener(BackToMenu);
+        }
+
+        private void BackToMenu()
+        {
+            ServiceLocator.Instance.GetService<CommandQueue>()
+                          .AddCommand(new LoadSceneCommand("Menu"));
         }
 
         private void Start()
         {
             gameObject.SetActive(false);
-           ServiceLocator.Instance.GetService<EventQueue>().Subscribe(EventIds.Victory, this);
+            ServiceLocator.Instance.GetService<EventQueue>().Subscribe(EventIds.Victory, this);
         }
 
         private void OnDestroy()
         {
-           ServiceLocator.Instance.GetService<EventQueue>().Unsubscribe(EventIds.Victory, this);
+            ServiceLocator.Instance.GetService<EventQueue>().Unsubscribe(EventIds.Victory, this);
         }
 
         public void Process(EventData eventData)
         {
             if (eventData.EventId == EventIds.Victory)
             {
-                _scoreText.SetText(ScoreView.Instance.CurrentScore.ToString());
+                _scoreText.SetText(ServiceLocator.Instance.GetService<ScoreView>().CurrentScore.ToString());
                 gameObject.SetActive(true);
             }
         }
 
         private void RestartGame()
         {
-            ServiceLocator.Instance.GetService<GameFacade>().StartBattle();
+            ServiceLocator.Instance.GetService<CommandQueue>()
+                          .AddCommand(new StartBattleCommand()); 
             gameObject.SetActive(false);
         }
     }

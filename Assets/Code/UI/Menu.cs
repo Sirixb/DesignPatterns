@@ -1,8 +1,7 @@
-using System;
 using Battle;
+using Common.Commands;
+using Patterns.Behaviour.Command;
 using Patterns.Decoupling.ServiceLocator;
-using Ships;
-using Ships.Enemies;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,8 +12,6 @@ namespace UI
         [SerializeField] private Button _startBattleButton;
         [SerializeField] private Button _stopBattleButton;
 
-        //[SerializeField] private GameFacade _gameFacade;
-
         private void Awake()
         {
             _startBattleButton.onClick.AddListener(StartBattle);
@@ -23,7 +20,8 @@ namespace UI
 
         private void StartBattle()
         {
-            ServiceLocator.Instance.GetService<GameFacade>().StartBattle();
+            ServiceLocator.Instance.GetService<CommandQueue>()
+                          .AddCommand(new StartBattleCommand());
         }
 
         private void StopBattle()

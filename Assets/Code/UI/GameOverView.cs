@@ -1,12 +1,11 @@
-using Ships;
-using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using Ships.Common;
 using Common;
 using Battle;
 using Patterns.Decoupling.ServiceLocator;
+using Patterns.Behaviour.Command;
+using Common.Commands;
 
 namespace UI
 {
@@ -14,12 +13,13 @@ namespace UI
     {
         [SerializeField] private TextMeshProUGUI _scoreText;
         [SerializeField] private Button _restartButton;
-        //[SerializeField] private GameFacade _gameFacade;
+        [SerializeField] private Button _backToMenuButton;
 
         private void Awake()
         {
             _restartButton.onClick.AddListener(RestartGame);
-        }
+            _backToMenuButton.onClick.AddListener(BackToMenu);
+        }    
 
         private void Start()
         {
@@ -31,18 +31,26 @@ namespace UI
            ServiceLocator.Instance.GetService<EventQueue>().Unsubscribe(EventIds.GameOver, this);
         }
 
+        private void BackToMenu()
+        {
+            ServiceLocator.Instance.GetService<CommandQueue>()
+                          .AddCommand(new LoadSceneCommand("Menu"));
+        }
+
         public void Process(EventData eventData)
         {
             if (eventData.EventId == EventIds.GameOver)
             {
-                _scoreText.SetText(ScoreView.Instance.CurrentScore.ToString());
+               
+                _scoreText.SetText(ServiceLocator.Instance.GetService<ScoreView>().CurrentScore.ToString());
                 gameObject.SetActive(true);
             }
         }
 
         private void RestartGame()
         {
-            ServiceLocator.Instance.GetService<GameFacade>().StartBattle();
+            ServiceLocator.Instance.GetService<CommandQueue>()
+                          .AddCommand(new StartBattleCommand()); 
             gameObject.SetActive(false);
         }
 
