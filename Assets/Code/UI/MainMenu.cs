@@ -17,8 +17,14 @@ namespace UI
 
         public void OnStartButtonPressed()
         {
+            //Solucion profe, yo la hice directamente en el LoadGameSceneCommand
+            /*var compositeCommand = new CompositeCommand();
+            compositeCommand.AddCommand(new LoadSceneCommand("Game"));
+            compositeCommand.AddCommand(new StartBattleCommand());*/
+            
             ServiceLocator.Instance.GetService<CommandQueue>()
-                         .AddCommand(new LoadGameSceneCommand());
+                         .AddCommand(/*compositeCommand*/ new LoadGameSceneCommand());
+
         }
 
         

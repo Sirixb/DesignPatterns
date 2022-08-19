@@ -19,10 +19,11 @@ namespace Patterns.Structural.Composite.Command
         
         public async Task Execute()
         {
+            //El await y quitar la lista de task fue mi solucion para poder usar este composite en el ejercicio propuesto aunque luego el profe decidio no usarlo. Ver LoadGameSceneCommand.cs
             var tasks = new List<Task>(_commands.Count);
             foreach (var command in _commands)
             {
-                var task = command.Execute();
+                var task = /*await*/ command.Execute();
                 tasks.Add(task);
             }
 
