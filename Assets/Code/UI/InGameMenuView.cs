@@ -1,4 +1,5 @@
 using Battle;
+using Common;
 using Common.Commands;
 using Patterns.Behaviour.Command;
 using Patterns.Decoupling.ServiceLocator;
@@ -7,88 +8,92 @@ using UnityEngine.UI;
 
 namespace UI
 {
-    public class InGameMenuView : MonoBehaviour, InGameMenuMediator
+    public class InGameMenuView : MonoBehaviour, InGameMenuMediator, EventObserver
     {
-        [SerializeField] private GameObject _Panel;
-        [SerializeField] private Button _resumeButton;
-        [SerializeField] private Button _restartButton;
-        [SerializeField] private Button _menuButton;
+        
+        
         private bool isPaused = false;
 
-        [SerializeField] private VictoryView victoryView;
-        [SerializeField] private GameOverView victoryView;
-        [SerializeField] private PauseView victoryView;
+        [SerializeField] private VictoryView _victoryView;
+        [SerializeField] private GameOverView _gameOverView;
+        [SerializeField] private PauseView _pauseView;
 
         private void Awake()
         {
-            _Panel.SetActive(isPaused);
-            _resumeButton.onClick.AddListener(Resume);
-            _restartButton.onClick.AddListener(RestartBattle);
-            _menuButton.onClick.AddListener(BackToMenu);
+            _victoryView.Configure(this);
+            _gameOverView.Configure(this);
+            _pauseView.Configure(this);
+        }
 
-
+        private void Start()
+        {
+            ServiceLocator.Instance.GetService<EventQueue>().Subscribe(EventIds.GameOver, this);
+            ServiceLocator.Instance.GetService<EventQueue>().Subscribe(EventIds.Victory, this);
+        }
+        private void OnDestroy()
+        {
+            ServiceLocator.Instance.GetService<EventQueue>().Unsubscribe(EventIds.GameOver, this);
+            ServiceLocator.Instance.GetService<EventQueue>().Unsubscribe(EventIds.Victory, this);
         }
 
         public void Update()
         {
             if (UnityEngine.Input.GetKeyDown(KeyCode.Escape))
             {
-                PauseGame();
-            }
-        }
-
-        private void Resume()
-        {
-            PauseGame();
-        }
-
-        private void RestartBattle()
-        {
-            ServiceLocator.Instance.GetService<CommandQueue>()
-                       .AddCommand(new LoadGameSceneCommand());
-            PauseGame();
-        }
-        private void BackToMenu()
-        {
-            ServiceLocator.Instance.GetService<CommandQueue>()
-                          .AddCommand(new LoadSceneCommand("Menu"));
-            PauseGame();
-        }
-
-
-        private void PauseGame()
-        {
-            isPaused = !isPaused;
-            _Panel.SetActive(isPaused);
-
-            if (isPaused)
-            {
-                Time.timeScale = 0;
-            }
-            else
-            {
-                Time.timeScale = 1;
+                OnPauseGamePressed();
             }
         }
 
         public void OnBackToMenuPressed()
         {
-            throw new System.NotImplementedException();
+            ServiceLocator.Instance.GetService<CommandQueue>()
+                          .AddCommand(new LoadSceneCommand("Menu"));
+            if(isPaused)
+                OnPauseGamePressed();
         }
 
         public void OnRestartGamePressed()
         {
-            throw new System.NotImplementedException();
+            ServiceLocator.Instance.GetService<CommandQueue>()
+                       .AddCommand(new LoadGameSceneCommand());
+            if (isPaused) 
+                OnPauseGamePressed();
         }
 
         public void OnResumeGamePressed()
         {
-            throw new System.NotImplementedException();
+            OnPauseGamePressed();
+            _pauseView.Hide();
         }
 
         public void OnPauseGamePressed()
         {
-            throw new System.NotImplementedException();
+            isPaused = !isPaused;
+            //_Panel.SetActive(isPaused);
+
+            if (isPaused)
+            {
+                _pauseView.Show();
+                Time.timeScale = 0;
+            }
+            else
+            {
+                _pauseView.Hide(); 
+                Time.timeScale = 1;
+            }
+        }
+
+        public void Process(EventData eventData)
+        {
+            if (eventData.EventId == EventIds.GameOver)
+            {
+                _gameOverView.Show();
+            }
+
+            if (eventData.EventId == EventIds.Victory)
+            {
+                _victoryView.Show();
+            }
         }
     }
 }

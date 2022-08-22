@@ -1731,8 +1731,9 @@ GameObject:
   - component: {fileID: 540986313}
   - component: {fileID: 540986315}
   - component: {fileID: 540986314}
+  - component: {fileID: 540986316}
   m_Layer: 5
-  m_Name: PanelPauseMenu
+  m_Name: PauseView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1798,6 +1799,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 540986312}
   m_CullTransparentMesh: 1
+--- !u!114 &540986316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 540986312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aeb9603db8d5d5744b6a31646022f488, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _Panel: {fileID: 0}
+  _resumeButton: {fileID: 734417379}
+  _restartButton: {fileID: 451888160}
+  _menuButton: {fileID: 268012082}
 --- !u!1 &570123534
 GameObject:
   m_ObjectHideFlags: 0
@@ -2743,7 +2760,7 @@ GameObject:
   - component: {fileID: 1221616665}
   - component: {fileID: 1221616666}
   m_Layer: 5
-  m_Name: PauseMenu
+  m_Name: InGameMenuView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2789,10 +2806,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3d5dd1cd5c646478a6f83531f0c9073, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Panel: {fileID: 540986312}
-  _resumeButton: {fileID: 734417379}
-  _restartButton: {fileID: 451888160}
-  _menuButton: {fileID: 268012082}
+  _victoryView: {fileID: 1737149071}
+  _gameOverView: {fileID: 40648491}
+  _pauseView: {fileID: 540986316}
 --- !u!1 &1254279384
 GameObject:
   m_ObjectHideFlags: 0

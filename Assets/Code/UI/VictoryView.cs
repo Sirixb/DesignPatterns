@@ -9,48 +9,69 @@ using UnityEngine.UI;
 
 namespace UI
 {
-    public class VictoryView : MonoBehaviour, EventObserver
+    public class VictoryView : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI _scoreText;
         [SerializeField] private Button _restartButton;
         [SerializeField] private Button _backToMenuButton;
 
+        private InGameMenuMediator _inGameMenuMediator;
+
+        public void Configure(InGameMenuMediator inGameMenuMediator)
+        {
+            _inGameMenuMediator = inGameMenuMediator;
+        }
+        
         private void Awake()
         {
             _restartButton.onClick.AddListener(RestartGame); 
             _backToMenuButton.onClick.AddListener(BackToMenu);
         }
 
-        private void BackToMenu()
-        {
-            ServiceLocator.Instance.GetService<CommandQueue>()
-                          .AddCommand(new LoadSceneCommand("Menu"));
-        }
-
         private void Start()
         {
-            gameObject.SetActive(false);
-            ServiceLocator.Instance.GetService<EventQueue>().Subscribe(EventIds.Victory, this);
+            Hide();
+            //ServiceLocator.Instance.GetService<EventQueue>().Subscribe(EventIds.Victory, this);
         }
 
-        private void OnDestroy()
+        private void BackToMenu()
         {
-            ServiceLocator.Instance.GetService<EventQueue>().Unsubscribe(EventIds.Victory, this);
+            _inGameMenuMediator.OnBackToMenuPressed();
+            //ServiceLocator.Instance.GetService<CommandQueue>()
+            //              .AddCommand(new LoadSceneCommand("Menu"));
         }
 
-        public void Process(EventData eventData)
-        {
-            if (eventData.EventId == EventIds.Victory)
-            {
-                _scoreText.SetText(ServiceLocator.Instance.GetService<ScoreView>().CurrentScore.ToString());
-                gameObject.SetActive(true);
-            }
-        }
+
+        //private void OnDestroy()
+        //{
+        //    //ServiceLocator.Instance.GetService<EventQueue>().Unsubscribe(EventIds.Victory, this);
+        //}
 
         private void RestartGame()
         {
-            ServiceLocator.Instance.GetService<CommandQueue>()
-                          .AddCommand(new StartBattleCommand()); 
+            _inGameMenuMediator.OnRestartGamePressed();
+            //ServiceLocator.Instance.GetService<CommandQueue>()
+            //              .AddCommand(new StartBattleCommand()); 
+            Hide();
+        }
+        //public void Process(EventData eventData)
+        //{
+        //    //if (eventData.EventId == EventIds.Victory)
+        //    //{
+        //    //    _scoreText.SetText(ServiceLocator.Instance.GetService<ScoreView>().CurrentScore.ToString());
+        //    //    gameObject.SetActive(true);
+        //    //}
+        //}
+
+        
+        public void Show()
+        {
+            gameObject.SetActive(true);
+            _scoreText.SetText(ServiceLocator.Instance.GetService<ScoreView>().CurrentScore.ToString());
+        }
+
+        public void Hide()
+        {
             gameObject.SetActive(false);
         }
     }
