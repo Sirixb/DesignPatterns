@@ -3914,6 +3914,8 @@ MonoBehaviour:
   _scoreText: {fileID: 146181681}
   _restartButton: {fileID: 508121854}
   _backToMenuButton: {fileID: 280945826}
+  _userData:
+    BestScores: 0000000000000000000000000000000000000000
 --- !u!114 &1737149072
 MonoBehaviour:
   m_ObjectHideFlags: 0
