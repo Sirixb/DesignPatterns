@@ -3,6 +3,7 @@ using Common;
 using Common.Commands;
 using Patterns.Behaviour.Command;
 using Patterns.Decoupling.ServiceLocator;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,77 +11,69 @@ namespace UI
 {
     public class InGameMenuView : MonoBehaviour, InGameMenuMediator, EventObserver
     {
-        
-        
-        private bool isPaused = false;
-
+        [SerializeField] private Button _pauseButton;
+        [SerializeField] private PauseMenuView _pauseMenuView;
         [SerializeField] private VictoryView _victoryView;
         [SerializeField] private GameOverView _gameOverView;
-        [SerializeField] private PauseView _pauseView;
+        private CommandQueue _commandQueue;
 
         private void Awake()
         {
+            _pauseButton.onClick.AddListener(OnPauseButtonPressed);
             _victoryView.Configure(this);
             _gameOverView.Configure(this);
-            _pauseView.Configure(this);
+            _pauseMenuView.Configure(this);
         }
 
         private void Start()
         {
+            _commandQueue = ServiceLocator.Instance.GetService<CommandQueue>(); 
             ServiceLocator.Instance.GetService<EventQueue>().Subscribe(EventIds.GameOver, this);
             ServiceLocator.Instance.GetService<EventQueue>().Subscribe(EventIds.Victory, this);
+            HideAllMenus();
         }
+
         private void OnDestroy()
         {
             ServiceLocator.Instance.GetService<EventQueue>().Unsubscribe(EventIds.GameOver, this);
             ServiceLocator.Instance.GetService<EventQueue>().Unsubscribe(EventIds.Victory, this);
         }
 
-        public void Update()
+        private void HideAllMenus()
         {
-            if (UnityEngine.Input.GetKeyDown(KeyCode.Escape))
-            {
-                OnPauseGamePressed();
-            }
+            _pauseMenuView.Hide();
+            _victoryView.Hide();
+            _gameOverView.Hide();
+        }
+      
+        private void OnPauseButtonPressed()
+        {
+            _commandQueue.AddCommand(new PauseGameCommand());
+            _pauseMenuView.Show(); 
         }
 
         public void OnBackToMenuPressed()
         {
-            ServiceLocator.Instance.GetService<CommandQueue>()
-                          .AddCommand(new LoadSceneCommand("Menu"));
-            if(isPaused)
-                OnPauseGamePressed();
-        }
-
-        public void OnRestartGamePressed()
-        {
-            ServiceLocator.Instance.GetService<CommandQueue>()
-                       .AddCommand(new LoadGameSceneCommand());
-            if (isPaused) 
-                OnPauseGamePressed();
+            _commandQueue.AddCommand(new LoadSceneCommand("Menu"));
+            ResumeGame();
         }
 
         public void OnResumeGamePressed()
         {
-            OnPauseGamePressed();
-            _pauseView.Hide();
+            _pauseMenuView.Hide();
+            ResumeGame();
+        } 
+
+        public void OnRestartGamePressed()
+        {
+            HideAllMenus();
+            ResumeGame();
+            _commandQueue.AddCommand(new RestartBattleCommand());
         }
 
-        public void OnPauseGamePressed()
+        private void ResumeGame()
         {
-            isPaused = !isPaused;
-            //_Panel.SetActive(isPaused);
-
-            if (isPaused)
-            {
-                _pauseView.Show();
-                Time.timeScale = 0;
-            }
-            else
-            {
-                _pauseView.Hide(); 
-                Time.timeScale = 1;
-            }
+            _commandQueue.AddCommand(new ResumeGameCommand());
         }
 
         public void Process(EventData eventData)
@@ -88,11 +81,13 @@ namespace UI
             if (eventData.EventId == EventIds.GameOver)
             {
                 _gameOverView.Show();
+                return;
             }
 
             if (eventData.EventId == EventIds.Victory)
             {
                 _victoryView.Show();
+                return;
             }
         }
     }

@@ -28,45 +28,20 @@ namespace UI
             _backToMenuButton.onClick.AddListener(BackToMenu);
         }    
 
-        private void Start()
-        {
-            //ServiceLocator.Instance.GetService<EventQueue>().Subscribe(EventIds.GameOver, this);
-            Hide();
-        }
-        //private void OnDestroy()
-        //{
-        //   //ServiceLocator.Instance.GetService<EventQueue>().Unsubscribe(EventIds.GameOver, this);
-        //}
-
         private void BackToMenu()
         {
             _inGameMenuMediator.OnBackToMenuPressed(); 
-            //ServiceLocator.Instance.GetService<CommandQueue>()
-            //              .AddCommand(new LoadSceneCommand("Menu"));
         }
-
-        //public void Process(EventData eventData)
-        //{
-        //    //if (eventData.EventId == EventIds.GameOver)
-        //    //{
-               
-        //    //    _scoreText.SetText(ServiceLocator.Instance.GetService<ScoreView>().CurrentScore.ToString());
-        //    //    gameObject.SetActive(true);
-        //    //}
-        //}
 
         private void RestartGame()
         {
             _inGameMenuMediator.OnRestartGamePressed();
-            //ServiceLocator.Instance.GetService<CommandQueue>()
-            //              .AddCommand(new StartBattleCommand()); 
-            Hide();
         }
 
         public void Show()
         {
-            gameObject.SetActive(true);
             _scoreText.SetText(ServiceLocator.Instance.GetService<ScoreView>().CurrentScore.ToString());
+            gameObject.SetActive(true);
         }
 
         public void Hide()

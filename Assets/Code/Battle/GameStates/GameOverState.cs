@@ -1,22 +1,25 @@
 ﻿using System;
 using Common;
+using Common.Commands;
+using Patterns.Behaviour.Command;
 using Patterns.Decoupling.ServiceLocator;
 
 namespace Battle.GameStates
 {
     public class GameOverState : GameState
     {
-        private readonly GameFacade _gameFacade;
+        private readonly Command _stopBattleCommand;
 
-        public GameOverState(GameFacade gameFacade)
+        public GameOverState(Command stopBatleCommand)
         {
-            _gameFacade = gameFacade;
+            _stopBattleCommand = stopBatleCommand;
         }
 
         public void Start(Action<GameStateController.GameStates> onEndedCallback)
         {
-           _gameFacade.StopBattle();
-           ServiceLocator.Instance.GetService<EventQueue>().EnqueueEvent(new EventData(EventIds.GameOver));
+            ServiceLocator.Instance.GetService<CommandQueue>()
+                          .AddCommand(_stopBattleCommand);
+            ServiceLocator.Instance.GetService<EventQueue>().EnqueueEvent(new EventData(EventIds.GameOver));
         }
 
         public void Stop()

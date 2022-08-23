@@ -25,14 +25,19 @@ namespace Ships
 
         private void Start()
         {
-           ServiceLocator.Instance.GetService<EventQueue>().Subscribe(EventIds.GameOver, this);
-           ServiceLocator.Instance.GetService<EventQueue>().Subscribe(EventIds.Victory, this);
+            EventQueue eventQueue = ServiceLocator.Instance.GetService<EventQueue>();
+            eventQueue.Subscribe(EventIds.Restart, this);
+            eventQueue.Subscribe(EventIds.GameOver, this);
+            eventQueue.Subscribe(EventIds.Victory, this);
+
 
         }
         private void OnDestroy()
         {
-           ServiceLocator.Instance.GetService<EventQueue>().Unsubscribe(EventIds.GameOver, this);
-           ServiceLocator.Instance.GetService<EventQueue>().Unsubscribe(EventIds.Victory, this);
+            var eventQueue = ServiceLocator.Instance.GetService<EventQueue>();
+            eventQueue.Unsubscribe(EventIds.Restart, this);
+            eventQueue.Unsubscribe(EventIds.GameOver, this);
+            eventQueue.Unsubscribe(EventIds.Victory, this);
         }
         public void Configure(ShipConfiguration configuration)
         {
@@ -102,10 +107,14 @@ namespace Ships
 
         public void Process(EventData eventData)
         {
-            if (eventData.EventId != EventIds.GameOver && eventData.EventId != EventIds.Victory)
+            if (eventData.EventId != EventIds.GameOver 
+                && eventData.EventId != EventIds.Victory
+                && eventData.EventId != EventIds.Restart)
             {
                 return;
             }
+
+            _weaponController.Restart();
 
             Destroy(gameObject);
         }

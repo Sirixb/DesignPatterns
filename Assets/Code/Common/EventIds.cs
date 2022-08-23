@@ -6,6 +6,7 @@ namespace Common
         ShipSpawned,
         AllShipSpawned,
         GameOver,
-        Victory
+        Victory,
+        Restart
     }
 }

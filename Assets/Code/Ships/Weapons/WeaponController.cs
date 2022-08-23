@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using Ships.Weapons;
 using Ships.Common;
+using System;
+using System.Collections.Generic;
 
 namespace Ships
 {
@@ -16,11 +18,13 @@ namespace Ships
         private Ship _ship;
         private Teams _team;
 
+        private List<Projectile> _aliveProjectiles;
 
         private void Awake()
         {
             var instance = Instantiate(_projectileConfiguration);
             _projectileFactory = new ProjectileFactory(instance);
+            _aliveProjectiles = new List<Projectile>();
         }
 
         public void Configure(Ship ship, float fireRate, ProjectileId defaultProjectileId, Teams team)
@@ -50,18 +54,25 @@ namespace Ships
                         _projectileSpawnPosition.rotation,
                         _team
                         );
+            _aliveProjectiles.Add(projectile);
+            projectile.OnDestroy += OnProjectileDestroy;
             _remainingSecondsToBeAbleToShoot = _fireRateInSeconds;           
         }
 
-        //Solution Exercise
-        //private void Shoot()
-        //{
-        //    //var prefab = _projectilePrefabs.First(projectile => projectile.Id.Equals(_activeProjectileId));
-        //    _remainingSecondsToBeAbleToShoot = _fireRateInSeconds;
-        //    //Instantiate(prefab, _projectileSpawnPosition.position, _projectileSpawnPosition.rotation);
+        private void OnProjectileDestroy(Projectile projectile)
+        {
+            _aliveProjectiles.Remove(projectile);
+            projectile.OnDestroy -= OnProjectileDestroy;
+        }
 
-        //    _projectileFactory.Create(/*_activeProjectileId*/_ProjectileId.Value);
-        //}
+        public void Restart()
+        {
+            foreach (var aliveProjectile in _aliveProjectiles)
+            {
+                Destroy(aliveProjectile.gameObject);
+            }
 
+            _aliveProjectiles.Clear();
+        }
     }
 }

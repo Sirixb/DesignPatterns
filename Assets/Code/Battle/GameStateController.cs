@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Battle.GameStates;
+using Common.Commands;
 using Patterns.Decoupling.ServiceLocator;
 using UnityEngine;
 
@@ -16,21 +17,18 @@ namespace Battle
             Victory
         }
 
-        [SerializeField] private GameFacade _gameFacade;
-
         private GameState _currentState;
 
         private Dictionary<GameStates, GameState> _idToState;
 
         private void Start()
         {
-            var gameFacade = ServiceLocator.Instance.GetService<GameFacade>();
-            _idToState =
-                new Dictionary<GameStates, GameState>
+            var stopBattleCommand = new StopBattleCommand();
+            _idToState = new Dictionary<GameStates, GameState>
                 {
                     {GameStates.Playing, new PlayingState()},
-                    {GameStates.GameOver, new GameOverState(gameFacade)},
-                    {GameStates.Victory, new VictoryState(gameFacade)}
+                    {GameStates.GameOver, new GameOverState(stopBattleCommand)},
+                    {GameStates.Victory, new VictoryState(stopBattleCommand)}
                 };
 
             _currentState = GetState(GameStates.Playing);

@@ -16,6 +16,7 @@ namespace Ships
 
         protected Transform _myTransform;
 
+        public Action<Projectile> OnDestroy; 
         public string Id => _projectileId.Value;
 
         public void Configure(Teams team)
@@ -60,6 +61,7 @@ namespace Ships
         private void DestroyProjectile()
         {
             DoDestroy();
+            OnDestroy?.Invoke(this);
             Destroy(gameObject);
         }
 
