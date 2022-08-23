@@ -16,8 +16,6 @@ namespace UI
         [SerializeField] private Button _restartButton;
         [SerializeField] private Button _backToMenuButton;
         [SerializeField] private UserData _userData;
-        private DataStorage _dataStorage;
-
 
         private InGameMenuMediator _inGameMenuMediator;
 
@@ -46,22 +44,6 @@ namespace UI
         {
             _scoreText.SetText(ServiceLocator.Instance.GetService<ScoreView>().CurrentScore.ToString());
             gameObject.SetActive(true);
-
-            SaveGame();
-        }
-
-        private void SaveGame()
-        {
-            int score = ServiceLocator.Instance.GetService<ScoreView>().CurrentScore;
-            int i = 0;
-            _userData.BestScores[i] = score;
-            i++;
-
-            //_dataStorage = new DataStorage();
-            //_dataStorage.UpdateScore(_userData);
-
-            //print(_dataStorage.GetScores());
-            //print(_dataStorage.GetScores().BestScores);
         }
 
         public void Hide()
