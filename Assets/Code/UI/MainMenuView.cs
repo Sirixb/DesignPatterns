@@ -1,18 +1,27 @@
 using Common.Commands;
 using Patterns.Behaviour.Command;
 using Patterns.Decoupling.ServiceLocator;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace UI
 {
-    public class MainMenu : MonoBehaviour
+    public class MainMenuView : MonoBehaviour , MainMenuMediator
     {
         [SerializeField] private Button _startGameButton;
+        [SerializeField] private Button _showLeaderBoardButton;
+        [SerializeField] private LeaderBoardView _leaderBoardView;
 
-        private void Start()
+        private void Awake()
         {
             _startGameButton.onClick.AddListener(OnStartButtonPressed);
+            _showLeaderBoardButton.onClick.AddListener(OnShowLeaderBoardPressed);
+        }
+        private void Start()
+        {
+            _leaderBoardView.Configure(this);
+            _leaderBoardView.Hide();
         }
 
         public void OnStartButtonPressed()
@@ -27,6 +36,14 @@ namespace UI
 
         }
 
-        
+        private void OnShowLeaderBoardPressed()
+        {
+            _leaderBoardView.Show();
+        }
+
+        public void OnCloseLeaderBoardPressed()
+        {
+            _leaderBoardView.Hide();
+        }
     }
 }

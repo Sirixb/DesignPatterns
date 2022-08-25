@@ -6,56 +6,21 @@ using Patterns.Decoupling.ServiceLocator;
 
 namespace UI
 {
-    public class ScoreView : MonoBehaviour, EventObserver
+    
+    public class ScoreView : MonoBehaviour
     {
 
         [SerializeField] private TextMeshProUGUI _text;
 
-        private int _currentScore;
-        public int CurrentScore
-        {
-            get => _currentScore;
-            private set
-            {
-                _currentScore = value;
-                _text.SetText(_currentScore.ToString());
-            }
-        }
-
-        private void Start()
-        {
-           ServiceLocator.Instance.GetService<EventQueue>().Subscribe(EventIds.ShipDestroyed,this);
-        }
-        private void OnDestroy()
-        {
-           ServiceLocator.Instance.GetService<EventQueue>().Unsubscribe(EventIds.ShipDestroyed, this);
-
-        }
+        
         public void Reset()
         {
-            CurrentScore = 0;
+            UpdateScore(0);
         }
-        
-        public void Process(EventData eventData)
-        {
-            if (eventData.EventId != EventIds.ShipDestroyed)
-            {
-                return;
-            }
 
-            var shipDestroyedEventData = (ShipDestroyedEventData)eventData;
-            AddScore(shipDestroyedEventData.Team, shipDestroyedEventData.ScoreToAdd);
-        }
-        
-        private void AddScore(Teams killedTeam, int scoreToAdd)
+        public void UpdateScore(int newScore)
         {
-            if (killedTeam != Teams.Enemy)
-            {
-                return;
-            }
-
-            CurrentScore += scoreToAdd;
-            _text.SetText(CurrentScore.ToString());
+            _text.SetText(newScore.ToString());
         }
     }
 }

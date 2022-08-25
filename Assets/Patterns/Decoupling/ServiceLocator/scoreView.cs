@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Patterns.Decoupling.ServiceLocator
 {
-    public class ScoreSystem : IScoreSystem
+    public class scoreView : IScoreSystem
     {
         private int _currentScore;
         

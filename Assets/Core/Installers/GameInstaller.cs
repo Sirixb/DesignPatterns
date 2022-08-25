@@ -4,6 +4,7 @@ using Ships;
 using Ships.Enemies;
 using UI;
 using UnityEngine;
+//using ScoreSystemImpl = Common.ScoreSystemImpl;
 
 namespace Core.Installers
 {

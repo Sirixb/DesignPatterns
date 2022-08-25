@@ -19,8 +19,10 @@ namespace Core.DataStorage
             PlayerPrefs.Save();
         }
 
-        public T GetData<T>(string name)
+        public T GetData<T>(string name) /*where T: new()*/
         {
+            //var defaultValue = new T();
+            //var json = PlayerPrefs.GetString(name, _serializar.ToJson(defaultValue));  //Se cancela esta forma Debido a que el GetData me lo podria dar una libreria a la que no tenga acceso
             var json = PlayerPrefs.GetString(name);
             return _serializar.FromJson<T>(json);
         }

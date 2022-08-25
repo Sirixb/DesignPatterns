@@ -1,4 +1,4 @@
- using Patterns.Decoupling.ServiceLocator;
+using Patterns.Decoupling.ServiceLocator;
 using UnityEngine;
 
 namespace Core.Installers

@@ -5,7 +5,6 @@ namespace Common
 {
     public class EventQueueImpl : MonoBehaviour, EventQueue
     {
-
         private Queue<EventData> _currentEvents;
         private Queue<EventData> _nextEvents;
 
@@ -13,7 +12,6 @@ namespace Common
 
         private void Awake()
         {
-
             _currentEvents = new Queue<EventData>();
             _nextEvents = new Queue<EventData>();
             _observers = new Dictionary<EventIds, List<EventObserver>>();
@@ -69,5 +67,6 @@ namespace Common
                 }
             }
         }
+
     }
 }

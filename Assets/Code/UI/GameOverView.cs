@@ -6,6 +6,7 @@ using Battle;
 using Patterns.Decoupling.ServiceLocator;
 using Patterns.Behaviour.Command;
 using Common.Commands;
+using Common.Score;
 
 namespace UI
 {
@@ -40,7 +41,7 @@ namespace UI
 
         public void Show()
         {
-            _scoreText.SetText(ServiceLocator.Instance.GetService<ScoreView>().CurrentScore.ToString());
+            _scoreText.SetText(ServiceLocator.Instance.GetService<ScoreSystem>().CurrentScore.ToString());
             gameObject.SetActive(true);
         }
 
