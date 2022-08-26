@@ -32,7 +32,7 @@ namespace UI
 
         public void Show()
         {
-            gameObject.SetActive(true);
+            //gameObject.SetActive(true);
             var bestScores = ServiceLocator.Instance.GetService<ScoreSystem>().GetBestScores();
 
             for (int i = 0; i < bestScores.Length; i++)
@@ -52,7 +52,7 @@ namespace UI
         }
         public void Hide()
         {
-            gameObject.SetActive(false);
+            //gameObject.SetActive(false);
             foreach (var scoreEntryView in _scoreEntryViewInstances)
             {
                 Destroy(scoreEntryView.gameObject);

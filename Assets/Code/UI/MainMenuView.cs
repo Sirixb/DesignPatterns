@@ -11,17 +11,29 @@ namespace UI
     {
         [SerializeField] private Button _startGameButton;
         [SerializeField] private Button _showLeaderBoardButton;
+        [SerializeField] private Button _quitButton;
         [SerializeField] private LeaderBoardView _leaderBoardView;
 
         private void Awake()
         {
             _startGameButton.onClick.AddListener(OnStartButtonPressed);
             _showLeaderBoardButton.onClick.AddListener(OnShowLeaderBoardPressed);
+            _quitButton.onClick.AddListener(OnquitPressed);
         }
+
+        private void OnquitPressed()
+        {
+            #if UNITY_EDITOR
+                        UnityEditor.EditorApplication.isPlaying = false;
+            #else
+		            Application.Quit();
+            #endif  
+        }
+
         private void Start()
         {
             _leaderBoardView.Configure(this);
-            _leaderBoardView.Hide();
+            //_leaderBoardView.Hide();
         }
 
         public void OnStartButtonPressed()
