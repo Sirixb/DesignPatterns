@@ -15,7 +15,15 @@ MonoBehaviour:
   _spawnConfigurations:
   - _shipToSpawnConfigurations:
     - {fileID: 11400000, guid: 3ae1c93bb420a46d6bd5aa3a8d41806b, type: 2}
+    - {fileID: 11400000, guid: 3ae1c93bb420a46d6bd5aa3a8d41806b, type: 2}
+    - {fileID: 11400000, guid: 3ae1c93bb420a46d6bd5aa3a8d41806b, type: 2}
+    - {fileID: 11400000, guid: 3ae1c93bb420a46d6bd5aa3a8d41806b, type: 2}
+    - {fileID: 11400000, guid: 3ae1c93bb420a46d6bd5aa3a8d41806b, type: 2}
     _timeToSpawn: 1
   - _shipToSpawnConfigurations:
     - {fileID: 11400000, guid: bee310eac37a542f7a921e274d710e05, type: 2}
-    _timeToSpawn: 2
+    - {fileID: 11400000, guid: bee310eac37a542f7a921e274d710e05, type: 2}
+    - {fileID: 11400000, guid: bee310eac37a542f7a921e274d710e05, type: 2}
+    - {fileID: 11400000, guid: bee310eac37a542f7a921e274d710e05, type: 2}
+    - {fileID: 11400000, guid: bee310eac37a542f7a921e274d710e05, type: 2}
+    _timeToSpawn: 10

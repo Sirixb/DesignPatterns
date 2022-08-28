@@ -14,3 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shipsPrefabs:
   - {fileID: 3982472195643883701, guid: 03df152f1408e412790a6f82d5833407, type: 3}
+  - {fileID: 3982472195643883701, guid: 715e2f9ac29086846b7887fec37b2ab6, type: 3}
+  - {fileID: 3982472195643883701, guid: c19288c7d39428f4caf17c0102eb4f59, type: 3}
+  - {fileID: 3982472195643883701, guid: 0aefbdfa67981974ea9cd3407b084876, type: 3}
+  - {fileID: 3982472195643883701, guid: ebc78d963e0b3864e8573e52f7022d7f, type: 3}
+  - {fileID: 3982472195643883701, guid: 97f961f2077605d4382f76430facc93e, type: 3}

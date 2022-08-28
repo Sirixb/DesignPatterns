@@ -7,7 +7,7 @@ public interface ILimitPosition
 public class IALimitsAdapter : ILimitPosition
 
 {
-    private int _currentDirectionX= 1;
+    //private int _currentDirectionX= 1;
 
     public Vector2 CheckLimit(Transform transform)
     {

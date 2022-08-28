@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89aadf46541c430e9b671ee24b5ef64b, type: 3}
   m_Name: ShipToSpawnConfiguration2
   m_EditorClassIdentifier: 
-  _shipId: {fileID: 11400000, guid: e1f376602cb2f4dc1bb9ff90288ee740, type: 2}
-  _defaultProjectileId: {fileID: 11400000, guid: 9a30f816e5be8fe46890c2e8d24d4da7, type: 2}
+  _shipId: {fileID: 11400000, guid: 942c4354dcbdf964496ee3b4b0404623, type: 2}
+  _defaultProjectileId: {fileID: 11400000, guid: 001612fe0aac6be4e9583070072171b3, type: 2}
   _speed: {x: 2, y: 1}
   _fireRate: 1
   _health: 1

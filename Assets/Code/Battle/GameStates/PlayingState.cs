@@ -2,6 +2,7 @@
 using Common;
 using Patterns.Decoupling.ServiceLocator;
 using Ships.Common;
+using UnityEngine;
 
 namespace Battle.GameStates
 {
@@ -32,6 +33,7 @@ namespace Battle.GameStates
 
         public void Process(EventData eventData)
         {
+            //Debug.Log("Naves: " + _aliveShips + " Todas instanciadas?: " + _allShipSpawned);
             if (eventData.EventId == EventIds.ShipDestroyed)
             {
                 _aliveShips -= 1;

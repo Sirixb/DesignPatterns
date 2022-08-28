@@ -15,6 +15,7 @@ namespace Ships
         [SerializeField] private WeaponController _weaponController;
         [SerializeField] private HealthController _healthController;
 
+        [SerializeField] private GameObject _explosionPrefab;
         [SerializeField] private ShipId _shipId;
         public string Id => _shipId.Value;
 
@@ -71,7 +72,7 @@ namespace Ships
 
             Destroy(gameObject);
 
-            var shipDestroyedEventData = new ShipDestroyedEventData(0, _team);
+            var shipDestroyedEventData = new ShipDestroyedEventData(0, _team, GetInstanceID());
            ServiceLocator.Instance.GetService<EventQueue>().EnqueueEvent(shipDestroyedEventData);
         }
 
@@ -98,9 +99,10 @@ namespace Ships
         {
             if (isDeath)
             {
+                Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
                 Destroy(gameObject);
 
-                var shipDestroyedEventData = new ShipDestroyedEventData(_score,_team);
+                var shipDestroyedEventData = new ShipDestroyedEventData(_score,_team, GetInstanceID());
                 ServiceLocator.Instance.GetService<EventQueue>().EnqueueEvent(shipDestroyedEventData);
             }
         }
@@ -108,8 +110,8 @@ namespace Ships
         public void Process(EventData eventData)
         {
             if (eventData.EventId != EventIds.GameOver 
-                && eventData.EventId != EventIds.Victory
-                && eventData.EventId != EventIds.Restart)
+             && eventData.EventId != EventIds.Victory
+             && eventData.EventId != EventIds.Restart)
             {
                 return;
             }

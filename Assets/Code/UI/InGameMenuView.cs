@@ -78,17 +78,18 @@ namespace UI
 
         public void Process(EventData eventData)
         {
+            if (eventData.EventId == EventIds.Victory)
+            {
+                _victoryView.Show();
+                return;
+            }
+
             if (eventData.EventId == EventIds.GameOver)
             {
                 _gameOverView.Show();
                 return;
             }
 
-            if (eventData.EventId == EventIds.Victory)
-            {
-                _victoryView.Show();
-                return;
-            }
         }
     }
 }

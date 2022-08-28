@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Common.Score
 {
-    public class ScoreSystemImpl : MonoBehaviour, EventObserver , ScoreSystem
+    public class ScoreSystemImpl : EventObserver , ScoreSystem
     {
         public int CurrentScore => _currentScore;
 
@@ -17,9 +17,9 @@ namespace Common.Score
         public ScoreSystemImpl(DataStore dataStore)
         {
             _dataStore = dataStore;
-            EventQueue eventQueue = ServiceLocator.Instance.GetService<EventQueue>();
-            eventQueue.Subscribe(EventIds.ShipDestroyed, this);
+            var eventQueue = ServiceLocator.Instance.GetService<EventQueue>();
             eventQueue.Subscribe(EventIds.Victory, this);
+            eventQueue.Subscribe(EventIds.ShipDestroyed, this);
         }
 
         public void Reset()
