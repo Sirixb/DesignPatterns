@@ -3,12 +3,12 @@ using Ships.Weapons;
 using Ships.Common;
 using System;
 using System.Collections.Generic;
+using Patterns.Decoupling.ServiceLocator;
 
 namespace Ships
 {
     public class WeaponController: MonoBehaviour
     {
-        [SerializeField] private ProjectilesConfiguration _projectileConfiguration;
         private float _fireRateInSeconds;
         [SerializeField] private Transform _projectileSpawnPosition;
         private float _remainingSecondsToBeAbleToShoot;
@@ -22,8 +22,7 @@ namespace Ships
 
         private void Awake()
         {
-            var instance = Instantiate(_projectileConfiguration);
-            _projectileFactory = new ProjectileFactory(instance);
+            _projectileFactory = ServiceLocator.Instance.GetService<ProjectileFactory>();
             _aliveProjectiles = new List<Projectile>();
         }
 

@@ -1105,7 +1105,6 @@ MonoBehaviour:
   - {fileID: 531384319}
   - {fileID: 1582964982}
   _levelConfiguration: {fileID: 11400000, guid: c8cca33ccafa943f68974795ed3f8bbd, type: 2}
-  _shipsConfiguration: {fileID: 11400000, guid: f5ba05773de544dcdb1614a2e44e290f, type: 2}
 --- !u!4 &454898993
 Transform:
   m_ObjectHideFlags: 0
@@ -1266,6 +1265,8 @@ MonoBehaviour:
   _enemySpawner: {fileID: 454898992}
   _gameStateController: {fileID: 1053147838}
   _screenFade: {fileID: 1650853013}
+  _shipsConfiguration: {fileID: 11400000, guid: f5ba05773de544dcdb1614a2e44e290f, type: 2}
+  _projectilesConfiguration: {fileID: 11400000, guid: 162033837e71dcc4293ddc7182055b1e, type: 2}
 --- !u!1001 &505169521
 PrefabInstance:
   m_ObjectHideFlags: 0

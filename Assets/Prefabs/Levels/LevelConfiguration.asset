@@ -27,3 +27,20 @@ MonoBehaviour:
     - {fileID: 11400000, guid: bee310eac37a542f7a921e274d710e05, type: 2}
     - {fileID: 11400000, guid: bee310eac37a542f7a921e274d710e05, type: 2}
     _timeToSpawn: 10
+  - _shipToSpawnConfigurations:
+    - {fileID: 11400000, guid: 0e671a932aefc1d48b7494a29026029f, type: 2}
+    - {fileID: 11400000, guid: 0e671a932aefc1d48b7494a29026029f, type: 2}
+    - {fileID: 11400000, guid: 0e671a932aefc1d48b7494a29026029f, type: 2}
+    - {fileID: 11400000, guid: 0e671a932aefc1d48b7494a29026029f, type: 2}
+    - {fileID: 11400000, guid: 0e671a932aefc1d48b7494a29026029f, type: 2}
+    _timeToSpawn: 20
+  - _shipToSpawnConfigurations:
+    - {fileID: 11400000, guid: ea09676ba8091b7488123a5bfe0ed2e3, type: 2}
+    - {fileID: 11400000, guid: ea09676ba8091b7488123a5bfe0ed2e3, type: 2}
+    - {fileID: 11400000, guid: ea09676ba8091b7488123a5bfe0ed2e3, type: 2}
+    - {fileID: 11400000, guid: ea09676ba8091b7488123a5bfe0ed2e3, type: 2}
+    - {fileID: 11400000, guid: ea09676ba8091b7488123a5bfe0ed2e3, type: 2}
+    _timeToSpawn: 30
+  - _shipToSpawnConfigurations:
+    - {fileID: 11400000, guid: 030e9a9d611669047ba205026353e3f6, type: 2}
+    _timeToSpawn: 40

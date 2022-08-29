@@ -1,4 +1,5 @@
 using Input;
+using Patterns.Decoupling.ServiceLocator;
 using Ships.CheckLimits;
 using Ships.Common;
 using Ships.Enemies;
@@ -19,7 +20,7 @@ namespace Ships
 
         private void Awake()
         {
-            var shipFactory = new ShipFactory(Instantiate(_shipsConfiguration));
+            var shipFactory = ServiceLocator.Instance.GetService<ShipFactory>();
             _shipBuilder = shipFactory.Create(_shipConfiguration.ShipId.Value)
                                                .WithConfiguration(_shipConfiguration)
                                                .WithTeam(Teams.Ally);

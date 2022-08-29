@@ -10,7 +10,6 @@ namespace Ships.Enemies
     {
         [SerializeField] private Transform[] _spawnPositions;
         [SerializeField] private LevelConfiguration _levelConfiguration;
-        [SerializeField] private ShipsConfiguration _shipsConfiguration;
         private ShipFactory _shipFactory;
 
         private float _currentTimeInSeconds;
@@ -19,7 +18,7 @@ namespace Ships.Enemies
 
         private void Awake()
         {
-            _shipFactory = new ShipFactory(Instantiate(_shipsConfiguration));
+            _shipFactory = ServiceLocator.Instance.GetService<ShipFactory>(); 
         }
 
         public void StartSpawn()

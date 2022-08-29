@@ -1,0 +1,22 @@
+using UnityEngine;
+
+namespace Patterns.Optimization.ObjectPooling
+{
+    public class ProjectileProjectileObjectPoolFactory
+    {
+        private readonly ProjectileObjectPool _prefab;
+        private readonly ObjectPool _objectPool;
+
+        public ProjectileProjectileObjectPoolFactory(ProjectileObjectPool prefab)
+        {
+            _prefab = prefab;
+            _objectPool = new ObjectPool(_prefab);
+            _objectPool.Init(0);
+        }
+
+        public ProjectileObjectPool Create()
+        {
+            return _objectPool.Spawn<ProjectileObjectPool>(Vector3.one, Quaternion.identity);
+        }
+    }
+}
