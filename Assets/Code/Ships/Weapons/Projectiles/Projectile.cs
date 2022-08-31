@@ -2,11 +2,12 @@
 using System.Collections;
 using UnityEngine;
 using Ships.Common;
+using Patterns.Optimization.ObjectPooling;
 
 namespace Ships
 {
     [RequireComponent(typeof(Rigidbody2D))]
-    public abstract class Projectile : MonoBehaviour, Damageable
+    public abstract class Projectile : RecyclableObject, Damageable
     {
         [SerializeField] protected Rigidbody2D _rigidbody2D;
         [SerializeField] private ProjectileId _projectileId;
@@ -24,9 +25,13 @@ namespace Ships
             Team = team;
         }
 
-        private void Start()
+        private void Awake()
         {
-            _myTransform = transform; 
+            _myTransform = transform;
+        }
+        
+        internal override void Init()
+        {
             StartCoroutine(DestroyIn(4));
             DoStart();
         }
@@ -61,10 +66,16 @@ namespace Ships
         private void DestroyProjectile()
         {
             DoDestroy();
+            
+            Recycle();
             OnDestroy?.Invoke(this);
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
 
+        internal override void Release()
+        {
+            
+        }
 
         protected abstract void DoDestroy();
 

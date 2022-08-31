@@ -47,7 +47,7 @@ namespace Ships
 
         private void Shoot()
         {
-            var projectile = _projectileFactory
+            var projectile = _projectileFactory 
                 .Create(_activeProjectileId, 
                         _projectileSpawnPosition.position, 
                         _projectileSpawnPosition.rotation,

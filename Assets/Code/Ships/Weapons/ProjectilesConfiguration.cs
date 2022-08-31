@@ -22,13 +22,16 @@ namespace Ships
 
         public Projectile GetProjectileById(string id)
         {
-            //var prefab = _projectilePrefabs.First(projectile => projectile.Id.Equals(projectileId));
-            //return _idToProjectilesPrefabs[id];
             if (!_idToProjectilesPrefabs.TryGetValue(id,out var projectile))
             {
                 throw new Exception($"Projectile {id} not found");
             }
             return projectile;
+        }
+
+        public Projectile[] GetAllPrefabs()
+        {
+            return _projectilePrefabs;
         }
     }
 }

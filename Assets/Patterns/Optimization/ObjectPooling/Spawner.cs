@@ -6,11 +6,11 @@ namespace Patterns.Optimization.ObjectPooling
     public class Spawner : MonoBehaviour
     {
         [SerializeField] private ProjectileObjectPool _prefab;
-        private ProjectileProjectileObjectPoolFactory _factory;
+        private ProjectileObjectPoolFactory _factory;
 
         private void Awake()
         {
-            _factory = new ProjectileProjectileObjectPoolFactory(_prefab);
+            _factory = new ProjectileObjectPoolFactory(_prefab);
         }
 
         private void Update()

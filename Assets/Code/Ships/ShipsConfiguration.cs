@@ -28,5 +28,10 @@ namespace Ships
 
             return ship;
         }
+
+        public ShipMediator[] GetAllPrefabs()
+        {
+            return _shipsPrefabs;
+        }
     }
 }

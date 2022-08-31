@@ -2,12 +2,12 @@ using UnityEngine;
 
 namespace Patterns.Optimization.ObjectPooling
 {
-    public class ProjectileProjectileObjectPoolFactory
+    public class ProjectileObjectPoolFactory
     {
         private readonly ProjectileObjectPool _prefab;
         private readonly ObjectPool _objectPool;
 
-        public ProjectileProjectileObjectPoolFactory(ProjectileObjectPool prefab)
+        public ProjectileObjectPoolFactory(ProjectileObjectPool prefab)
         {
             _prefab = prefab;
             _objectPool = new ObjectPool(_prefab);

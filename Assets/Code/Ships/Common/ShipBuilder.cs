@@ -1,5 +1,6 @@
 using System;
 using Input;
+using Patterns.Optimization.ObjectPooling;
 using Ships.CheckLimits;
 using Ships.Enemies;
 using UnityEngine;
@@ -24,6 +25,7 @@ namespace Ships.Common
         }
 
         private ShipMediator _prefab;
+        private ObjectPool _objectPool;
         private Vector3 _position = Vector3.zero;
         private Quaternion _rotation = Quaternion.identity;
         private Input.Input _input;
@@ -39,6 +41,11 @@ namespace Ships.Common
         public ShipBuilder FromPrefab(ShipMediator prefab)
         {
             _prefab = prefab;
+            return this;
+        }
+        public ShipBuilder FromObjectPool(ObjectPool objectPool)
+        {
+            _objectPool = objectPool;
             return this;
         }
 
@@ -140,6 +147,7 @@ namespace Ships.Common
 
         public ShipMediator Build()
         {
+            //var ship = _objectPool.Spawn<ShipMediator>(_position, _rotation);
             var ship = Object.Instantiate(_prefab, _position, _rotation);
             var shipConfiguration = new ShipConfiguration(GetInput(ship),
                                                           GetCheckLimits(ship),

@@ -1,5 +1,6 @@
 using Common;
 using Patterns.Decoupling.ServiceLocator;
+using Patterns.Optimization.ObjectPooling;
 using Ships.Common;
 using Ships.Weapons;
 using UI;
@@ -9,7 +10,7 @@ namespace Ships
 {
     [RequireComponent(typeof(MovementController))]
     [RequireComponent(typeof(WeaponController))]
-    public class ShipMediator : MonoBehaviour, Ship ,EventObserver
+    public class ShipMediator : RecyclableObject, Ship ,EventObserver
     {
         [SerializeField] private MovementController _movementController;
         [SerializeField] private WeaponController _weaponController;
@@ -30,9 +31,8 @@ namespace Ships
             eventQueue.Subscribe(EventIds.Restart, this);
             eventQueue.Subscribe(EventIds.GameOver, this);
             eventQueue.Subscribe(EventIds.Victory, this);
-
-
         }
+
         private void OnDestroy()
         {
             var eventQueue = ServiceLocator.Instance.GetService<EventQueue>();
@@ -50,8 +50,12 @@ namespace Ships
             _score = configuration.Score;
             _checkDestroyLimits = configuration.CheckDestroyLimits;
         }
+        internal override void Init()
+        {
 
-        private void FixedUpdate()
+        }
+
+       private void FixedUpdate()
         {
             var direction = _input.GetDirection();
             _movementController.Move(direction);
@@ -71,11 +75,14 @@ namespace Ships
             }
 
             Destroy(gameObject);
-
+            //Recycle();
             var shipDestroyedEventData = new ShipDestroyedEventData(0, _team, GetInstanceID());
            ServiceLocator.Instance.GetService<EventQueue>().EnqueueEvent(shipDestroyedEventData);
         }
+        internal override void Release()
+        {
 
+        }
         private void TryShoot()
         {
             if (_input.IsFireActionPressed())
@@ -101,6 +108,7 @@ namespace Ships
             {
                 Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
                 Destroy(gameObject);
+                //Recycle();
 
                 var shipDestroyedEventData = new ShipDestroyedEventData(_score,_team, GetInstanceID());
                 ServiceLocator.Instance.GetService<EventQueue>().EnqueueEvent(shipDestroyedEventData);
@@ -118,7 +126,10 @@ namespace Ships
 
             _weaponController.Restart();
 
+            //Recycle();
             Destroy(gameObject);
         }
+
+        
     }
 }

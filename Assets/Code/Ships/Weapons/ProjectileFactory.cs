@@ -1,48 +1,67 @@
 ﻿using UnityEngine;
-using Ships.Weapons;
-using System.Linq;
 using Ships.Common;
+using Patterns.Optimization.ObjectPooling;
+using System.Collections.Generic;
+using System;
 
 namespace Ships
 {
     public class ProjectileFactory 
     {
         private readonly ProjectilesConfiguration _projectileConfiguration;
+        private Dictionary<string, ObjectPool> _objectPools = new Dictionary<string, ObjectPool>();
 
         public ProjectileFactory(ProjectilesConfiguration Configuration)
         {
             _projectileConfiguration = Configuration;
+
+            var projectiles = _projectileConfiguration.GetAllPrefabs();
+
+            for (int i = 0; i < projectiles.Length; i++)
+            {
+                _objectPools.Add(projectiles[i].Id, new ObjectPool(projectiles[i]));
+            }
+
+            foreach (var pool in _objectPools.Values)
+            {
+                pool.Init(0);
+            }
         }
 
         public Projectile Create(string id, Vector3 position, Quaternion rotation, Teams team)
         {
-            var prefab = _projectileConfiguration.GetProjectileById(id);
+      
+            //var prefab = _projectileConfiguration.GetProjectileById(id);
 
-            var projectile = Object.Instantiate(prefab,position,rotation);
+            var pool = GetPool(id);
+
+            var projectile = pool.Spawn<Projectile>(position, rotation);
             projectile.Configure(team);
-            
+
             return projectile;
         }
 
-      
-
-
-        //Mi Solution Exercise
-
-        //private Transform _projectileSpawnPosition;
-
-        //public ProjectileFactory(ProjectilesConfiguration projectilesConfiguration, Transform projectileSpawn)
+        public ObjectPool GetPool(string id)
+        {
+            if (!_objectPools.TryGetValue(id, out var pool))
+            {
+                throw new Exception($"Pool {id} not found");
+            }
+            return pool;
+        }
+       
+        //public ProjectileFactory(ProjectilesConfiguration Configuration)
         //{
-        //    _projectileConfiguration= projectilesConfiguration;
-        //    _projectileSpawnPosition = projectileSpawn;
+        //    _projectileConfiguration = Configuration;
         //}
-
-        //public void Create(string projectileId)
+        //public Projectile Create(string id, Vector3 position, Quaternion rotation, Teams team)
         //{
-        //    //var prefab = _projectilePrefabs.First(projectile => projectile.Id.Equals(projectileId));
-        //    var prefab =  _projectileConfiguration.GetProjectileById(projectileId);
-        //  
-        //    Object.Instantiate(prefab, _projectileSpawnPosition.position, _projectileSpawnPosition.rotation);
+        //    var prefab = _projectileConfiguration.GetProjectileById(id);
+
+        //    var projectile = Object.Instantiate(prefab,position,rotation);
+        //    projectile.Configure(team);
+
+        //    return projectile;
         //}
     }
 }

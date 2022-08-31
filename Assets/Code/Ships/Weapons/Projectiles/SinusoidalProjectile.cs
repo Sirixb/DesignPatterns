@@ -6,7 +6,6 @@ namespace Ships.Weapons.Projectiles
 {
     public class SinusoidalProjectile : Projectile
     {
-        //[SerializeField] private float _speed;
         [SerializeField] private float _amplitude;
         [SerializeField] private float _frequency;
 
@@ -34,6 +33,5 @@ namespace Ships.Weapons.Projectiles
         {
 
         }
-
     }
 }

@@ -5,7 +5,6 @@ namespace Ships.Weapons.Projectiles
 {
     public class CurveProjectile : Projectile
     {
-        //[SerializeField] private float _speed;
         [SerializeField] private AnimationCurve _horizontalPosition;
         
         private float _currentTime;
