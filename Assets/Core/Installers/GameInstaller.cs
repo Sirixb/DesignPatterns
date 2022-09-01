@@ -33,8 +33,8 @@ namespace Core.Installers
             ServiceLocator.Instance.RegisterService(_gameStateController);
             ServiceLocator.Instance.RegisterService(_screenFade);
 
-            InstallShipFactory();
             InstallProjectileFactory();
+            InstallShipFactory();
         }
 
         private void InstallShipFactory()

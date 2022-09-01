@@ -10,6 +10,8 @@ namespace Ships
     {
         [SerializeField] public Projectile[] _projectilePrefabs;
         private Dictionary<string, Projectile> _idToProjectilesPrefabs;
+        
+        public Projectile[] ProjectilePrefabs => _projectilePrefabs;
 
         private void Awake()
         {
@@ -29,9 +31,5 @@ namespace Ships
             return projectile;
         }
 
-        public Projectile[] GetAllPrefabs()
-        {
-            return _projectilePrefabs;
-        }
     }
 }

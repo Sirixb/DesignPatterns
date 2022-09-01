@@ -25,15 +25,14 @@ namespace Ships
         private int _score;
         private CheckDestroyLimits _checkDestroyLimits;
 
-        private void Start()
+        internal override void Init()
         {
             EventQueue eventQueue = ServiceLocator.Instance.GetService<EventQueue>();
             eventQueue.Subscribe(EventIds.Restart, this);
             eventQueue.Subscribe(EventIds.GameOver, this);
             eventQueue.Subscribe(EventIds.Victory, this);
         }
-
-        private void OnDestroy()
+        internal override void Release()
         {
             var eventQueue = ServiceLocator.Instance.GetService<EventQueue>();
             eventQueue.Unsubscribe(EventIds.Restart, this);
@@ -49,10 +48,6 @@ namespace Ships
             _team = configuration.Team;
             _score = configuration.Score;
             _checkDestroyLimits = configuration.CheckDestroyLimits;
-        }
-        internal override void Init()
-        {
-
         }
 
        private void FixedUpdate()
@@ -74,14 +69,10 @@ namespace Ships
                 return;
             }
 
-            Destroy(gameObject);
-            //Recycle();
+            Recycle();
+
             var shipDestroyedEventData = new ShipDestroyedEventData(0, _team, GetInstanceID());
            ServiceLocator.Instance.GetService<EventQueue>().EnqueueEvent(shipDestroyedEventData);
-        }
-        internal override void Release()
-        {
-
         }
         private void TryShoot()
         {
@@ -107,8 +98,7 @@ namespace Ships
             if (isDeath)
             {
                 Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
-                Destroy(gameObject);
-                //Recycle();
+                Recycle();
 
                 var shipDestroyedEventData = new ShipDestroyedEventData(_score,_team, GetInstanceID());
                 ServiceLocator.Instance.GetService<EventQueue>().EnqueueEvent(shipDestroyedEventData);
@@ -126,10 +116,7 @@ namespace Ships
 
             _weaponController.Restart();
 
-            //Recycle();
-            Destroy(gameObject);
+            Recycle();
         }
-
-        
     }
 }

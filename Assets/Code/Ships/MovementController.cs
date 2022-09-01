@@ -14,7 +14,6 @@ namespace Ships
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody2D>();
-            _currentPosition = _rigidbody.position;
         }
 
         public void Configure(Ship ship, CheckLimits.CheckLimits checkLimits, Vector2 speed)
@@ -22,6 +21,7 @@ namespace Ships
             _ship = ship;
             _checkLimits = checkLimits;
             _speed = speed;
+            _currentPosition = _rigidbody.position;
         }
         
         public void Move(Vector2 direction)

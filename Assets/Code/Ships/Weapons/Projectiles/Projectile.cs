@@ -17,7 +17,7 @@ namespace Ships
 
         protected Transform _myTransform;
 
-        public Action<Projectile> OnDestroy; 
+        public Action<Projectile> OnRecycle; 
         public string Id => _projectileId.Value;
 
         public void Configure(Teams team)
@@ -32,8 +32,8 @@ namespace Ships
         
         internal override void Init()
         {
-            StartCoroutine(DestroyIn(4));
             DoStart();
+            StartCoroutine(RecycleIn(5));
         }
 
         protected abstract void DoStart();
@@ -57,7 +57,7 @@ namespace Ships
             //Debug.Log("Projectile collided: " + collision.name);
         }
 
-        private IEnumerator DestroyIn(float seconds)
+        private IEnumerator RecycleIn(float seconds)
         {
             yield return new WaitForSeconds(seconds);
             DestroyProjectile();
@@ -65,11 +65,8 @@ namespace Ships
 
         private void DestroyProjectile()
         {
-            DoDestroy();
-            
             Recycle();
-            OnDestroy?.Invoke(this);
-            //Destroy(gameObject);
+            OnRecycle?.Invoke(this);
         }
 
         internal override void Release()
@@ -77,7 +74,6 @@ namespace Ships
             
         }
 
-        protected abstract void DoDestroy();
 
         public void AddDamage(int amount)
         {

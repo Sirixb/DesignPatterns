@@ -1,5 +1,3 @@
-using Patterns.Behaviour.Command;
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 

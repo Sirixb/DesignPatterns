@@ -10,6 +10,8 @@ namespace Ships
         [SerializeField] private ShipMediator[] _shipsPrefabs;
         private Dictionary<string, ShipMediator> _idToShipPrefab;
 
+        public ShipMediator[] shipPrefabs => _shipsPrefabs;
+
         private void Awake()
         {
             _idToShipPrefab = new Dictionary<string, ShipMediator>();
@@ -27,11 +29,6 @@ namespace Ships
             }
 
             return ship;
-        }
-
-        public ShipMediator[] GetAllPrefabs()
-        {
-            return _shipsPrefabs;
         }
     }
 }

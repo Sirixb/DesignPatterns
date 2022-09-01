@@ -15,8 +15,5 @@ namespace Ships.Weapons
             
         }
 
-        protected override void DoDestroy()
-        {
-        }
     }
 }

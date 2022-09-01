@@ -24,7 +24,6 @@ namespace Ships.Common
             Viewport
         }
 
-        private ShipMediator _prefab;
         private ObjectPool _objectPool;
         private Vector3 _position = Vector3.zero;
         private Quaternion _rotation = Quaternion.identity;
@@ -38,11 +37,7 @@ namespace Ships.Common
         private Teams _team;
         private CheckDestroyLimits _checkDestroyLimits = new DoNotCheckDestroyLimitsStrategy();
 
-        public ShipBuilder FromPrefab(ShipMediator prefab)
-        {
-            _prefab = prefab;
-            return this;
-        }
+      
         public ShipBuilder FromObjectPool(ObjectPool objectPool)
         {
             _objectPool = objectPool;
@@ -70,6 +65,12 @@ namespace Ships.Common
         public ShipBuilder WithInput(Input.Input input)
         {
             _input = input;
+            return this;
+        }
+        
+        public ShipBuilder WithCheckLimits(CheckLimits.CheckLimits checkLimits)
+        {
+            _checkLimits = checkLimits;
             return this;
         }
 
@@ -147,8 +148,7 @@ namespace Ships.Common
 
         public ShipMediator Build()
         {
-            //var ship = _objectPool.Spawn<ShipMediator>(_position, _rotation);
-            var ship = Object.Instantiate(_prefab, _position, _rotation);
+            var ship = _objectPool.Spawn<ShipMediator>(_position, _rotation);
             var shipConfiguration = new ShipConfiguration(GetInput(ship),
                                                           GetCheckLimits(ship),
                                                           _shipConfiguration.Speed,

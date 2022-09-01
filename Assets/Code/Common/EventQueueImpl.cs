@@ -5,13 +5,28 @@ namespace Common
 {
     public class EventQueueImpl : MonoBehaviour, EventQueue
     {
+        private class RemoveData
+        {
+            public EventIds EventId;
+            public EventObserver EventObserver;
+
+            public RemoveData(EventIds eventId, EventObserver eventObserver)
+            {
+                EventId = eventId;
+                EventObserver = eventObserver;
+            }
+        }
+
+        private List<RemoveData> _observersToUnsubscribe;
         private Queue<EventData> _currentEvents;
         private Queue<EventData> _nextEvents;
 
         private Dictionary<EventIds, List<EventObserver>> _observers;
+        private bool _isProcessingEvents;
 
         private void Awake()
         {
+            _observersToUnsubscribe = new List<RemoveData>();
             _currentEvents = new Queue<EventData>();
             _nextEvents = new Queue<EventData>();
             _observers = new Dictionary<EventIds, List<EventObserver>>();
@@ -29,6 +44,18 @@ namespace Common
         }
 
         public void Unsubscribe(EventIds eventId, EventObserver eventObserver)
+        {
+            if (_isProcessingEvents)
+            {
+                var removeData = new RemoveData(eventId, eventObserver);
+                _observersToUnsubscribe.Add(removeData);
+                return;
+            }
+
+            DoUnsubscribe(eventId, eventObserver);
+        }
+
+        private void DoUnsubscribe(EventIds eventId, EventObserver eventObserver)
         {
             _observers[eventId].Remove(eventObserver);
         }
@@ -59,6 +86,7 @@ namespace Common
 
         private void ProcessEvent(EventData eventData)
         {
+            _isProcessingEvents = true;
             if (_observers.TryGetValue(eventData.EventId, out var eventObservers))
             {
                 foreach (var eventObserver in eventObservers)
@@ -66,7 +94,17 @@ namespace Common
                     eventObserver.Process(eventData);
                 }
             }
+            _isProcessingEvents = false;
+
+            UnsubscribePendingObservers();
         }
 
+        private void UnsubscribePendingObservers()
+        {
+            foreach (var removeData in _observersToUnsubscribe)
+            {
+                DoUnsubscribe(removeData.EventId, removeData.EventObserver);
+            }
+        }
     }
 }
