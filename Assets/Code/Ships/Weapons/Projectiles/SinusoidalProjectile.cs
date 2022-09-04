@@ -21,7 +21,7 @@ namespace Ships.Weapons.Projectiles
         protected override void DoMove()
         {
             _currentPosition += _myTransform.up * (_speed * Time.deltaTime);
-            // horizontalPosition = amplitude * sin (x * frequency)
+            //Formula: horizontalPosition = amplitude * sin (x * frequency)
             var horizontalPosition = _myTransform.right * (_amplitude * Mathf.Sin(_currentTime * _frequency));
 
             _rigidbody2D.MovePosition(_currentPosition + horizontalPosition);
