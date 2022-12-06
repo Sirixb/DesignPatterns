@@ -30,10 +30,12 @@ namespace Battle.GameStates
             eventQueue.Unsubscribe(EventIds.ShipSpawned, this);
             eventQueue.Unsubscribe(EventIds.AllShipSpawned, this);
         }
+     
+        
 
         public void Process(EventData eventData)
         {
-            //Debug.Log("Naves: " + _aliveShips + " Todas instanciadas?: " + _allShipSpawned);
+            Debug.Log("Naves: " + _aliveShips + " Todas instanciadas?: " + _allShipSpawned);
             if (eventData.EventId == EventIds.ShipDestroyed)
             {
                 _aliveShips -= 1;
@@ -58,7 +60,7 @@ namespace Battle.GameStates
 
         private void CheckGameState()
         {
-            if (_aliveShips == 0 && _allShipSpawned)
+            if (_aliveShips <= 0 && _allShipSpawned)
             {
                 _onEndedCallback?.Invoke(GameStateController.GameStates.Victory);
             }
