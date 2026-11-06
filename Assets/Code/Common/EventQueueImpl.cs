@@ -105,6 +105,8 @@ namespace Common
             {
                 DoUnsubscribe(removeData.EventId, removeData.EventObserver);
             }
+
+            _observersToUnsubscribe.Clear();
         }
     }
 }

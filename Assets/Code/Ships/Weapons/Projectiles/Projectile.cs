@@ -16,6 +16,7 @@ namespace Ships
         public Teams Team { get; private set; }
 
         protected Transform _myTransform;
+        private bool _isAlive;
 
         public Action<Projectile> OnRecycle; 
         public string Id => _projectileId.Value;
@@ -32,6 +33,7 @@ namespace Ships
         
         internal override void Init()
         {
+            _isAlive = true;
             DoStart();
             StartCoroutine(RecycleIn(5));
         }
@@ -65,6 +67,13 @@ namespace Ships
 
         private void DestroyProjectile()
         {
+            // Several collisions in the same physics step can try to destroy it twice.
+            if (!_isAlive)
+            {
+                return;
+            }
+
+            _isAlive = false;
             Recycle();
             OnRecycle?.Invoke(this);
         }

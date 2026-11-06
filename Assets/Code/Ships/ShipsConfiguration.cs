@@ -8,9 +8,11 @@ namespace Ships
     public class ShipsConfiguration : ScriptableObject
     {
         [SerializeField] private ShipMediator[] _shipsPrefabs;
+        [SerializeField, Min(0)] private int _initialPoolSize = 5;
         private Dictionary<string, ShipMediator> _idToShipPrefab;
 
         public ShipMediator[] shipPrefabs => _shipsPrefabs;
+        public int InitialPoolSize => _initialPoolSize;
 
         private void Awake()
         {

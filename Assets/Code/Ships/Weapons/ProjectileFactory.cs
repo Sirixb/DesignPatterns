@@ -23,7 +23,7 @@ namespace Ships
             {
                 var objectPool = new ObjectPool(projectile);
                 _pools.Add(projectile.Id, objectPool);
-                objectPool.Init(10);
+                objectPool.Init(_projectileConfiguration.InitialPoolSize);
             }
         }
 

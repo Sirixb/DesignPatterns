@@ -21,7 +21,7 @@ namespace Ships.Common
             {
                 var objectPool = new ObjectPool(shipMediator);
                 _pools.Add(shipMediator.Id, objectPool);
-                objectPool.Init(0);
+                objectPool.Init(_configuration.InitialPoolSize);
             }
 
         }

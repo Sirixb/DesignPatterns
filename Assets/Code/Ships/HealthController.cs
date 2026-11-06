@@ -19,6 +19,12 @@ namespace Ships
         
         public void AddDamage(int amount)
         {
+            // Already dead (and recycled): several colliders can hit in the same physics step.
+            if (_health <= 0)
+            {
+                return;
+            }
+
             _health = Mathf.Max(0, _health - amount);
 
             var isDeath = _health <= 0;

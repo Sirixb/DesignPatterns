@@ -11,7 +11,10 @@ namespace Ships
         [SerializeField] public Projectile[] _projectilePrefabs;
         private Dictionary<string, Projectile> _idToProjectilesPrefabs;
         
+        [SerializeField, Min(0)] private int _initialPoolSize = 30;
+
         public Projectile[] ProjectilePrefabs => _projectilePrefabs;
+        public int InitialPoolSize => _initialPoolSize;
 
         private void Awake()
         {
