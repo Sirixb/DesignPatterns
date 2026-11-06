@@ -34,6 +34,23 @@ namespace Ships
         }
         internal override void Release()
         {
+            UnsubscribeFromEvents();
+        }
+
+        private void OnDestroy()
+        {
+            // The EventQueue outlives the Game scene (DontDestroyOnLoad). Ships still active when the
+            // scene is unloaded never go through Release(), so they must unsubscribe here.
+            if (!ServiceLocator.Instance.Contains<EventQueue>())
+            {
+                return;
+            }
+
+            UnsubscribeFromEvents();
+        }
+
+        private void UnsubscribeFromEvents()
+        {
             var eventQueue = ServiceLocator.Instance.GetService<EventQueue>();
             eventQueue.Unsubscribe(EventIds.Restart, this);
             eventQueue.Unsubscribe(EventIds.GameOver, this);
@@ -84,7 +101,11 @@ namespace Ships
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            var damageable = collision.GetComponent<Damageable>();
+            if (!collision.TryGetComponent<Damageable>(out var damageable))
+            {
+                return;
+            }
+
             if (damageable.Team == _team)
             {
                 return;

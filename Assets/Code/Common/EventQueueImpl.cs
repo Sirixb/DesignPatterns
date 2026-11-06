@@ -57,7 +57,10 @@ namespace Common
 
         private void DoUnsubscribe(EventIds eventId, EventObserver eventObserver)
         {
-            _observers[eventId].Remove(eventObserver);
+            if (_observers.TryGetValue(eventId, out var eventObservers))
+            {
+                eventObservers.Remove(eventObserver);
+            }
         }
 
         public void EnqueueEvent(EventData eventData)
@@ -89,9 +92,12 @@ namespace Common
             _isProcessingEvents = true;
             if (_observers.TryGetValue(eventData.EventId, out var eventObservers))
             {
-                foreach (var eventObserver in eventObservers)
+                // Index loop over the current count: observers subscribed while processing
+                // are appended (and only receive later events) without invalidating the iteration.
+                var count = eventObservers.Count;
+                for (var i = 0; i < count; i++)
                 {
-                    eventObserver.Process(eventData);
+                    eventObservers[i].Process(eventData);
                 }
             }
             _isProcessingEvents = false;

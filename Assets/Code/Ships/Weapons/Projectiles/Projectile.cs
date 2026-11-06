@@ -49,7 +49,11 @@ namespace Ships
 
         public void OnTriggerEnter2D(Collider2D collision)
         {
-            var damageable = collision.GetComponent<Damageable>();
+            if (!collision.TryGetComponent<Damageable>(out var damageable))
+            {
+                return;
+            }
+
             if (damageable.Team == Team)
             {
                 return;

@@ -110,7 +110,9 @@ namespace Ships.Common
             switch (_checkLimitType)
             {
                 case CheckLimitTypes.InitialPosition:
-                    return new InitialPositionCheckLimits(ship.transform, 10);
+                    // Must be wider than the AI viewport bounce (spawn points reach x = +-7), otherwise
+                    // ships get pinned inside the screen and stop moving sideways.
+                    return new InitialPositionCheckLimits(ship.transform, 30);
                 case CheckLimitTypes.Viewport:
                     return new ViewportCheckLimits(Camera.main);
                 default:
