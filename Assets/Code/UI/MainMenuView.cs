@@ -1,4 +1,5 @@
 using Common.Commands;
+using GameAudio;
 using Patterns.Behaviour.Command;
 using Patterns.Decoupling.ServiceLocator;
 using System;
@@ -21,8 +22,14 @@ namespace UI
             _quitButton.onClick.AddListener(OnquitPressed);
         }
 
+        private static void PlaySound(AudioIds id)
+        {
+            ServiceLocator.Instance.GetService<AudioService>().PlaySfx(id);
+        }
+
         private void OnquitPressed()
         {
+            PlaySound(AudioIds.ButtonClick);
             #if UNITY_EDITOR
                         UnityEditor.EditorApplication.isPlaying = false;
             #else
@@ -38,6 +45,8 @@ namespace UI
 
         public void OnStartButtonPressed()
         {
+            PlaySound(AudioIds.ButtonConfirm);
+
             //Solucion profe, yo la hice directamente en el LoadGameSceneCommand
             /*var compositeCommand = new CompositeCommand();
             compositeCommand.AddCommand(new LoadSceneCommand("Game"));
@@ -50,11 +59,13 @@ namespace UI
 
         private void OnShowLeaderBoardPressed()
         {
+            PlaySound(AudioIds.ButtonClick);
             _leaderBoardView.Show();
         }
 
         public void OnCloseLeaderBoardPressed()
         {
+            PlaySound(AudioIds.ButtonClick);
             _leaderBoardView.Hide();
         }
     }

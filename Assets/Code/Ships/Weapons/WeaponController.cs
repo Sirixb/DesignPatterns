@@ -2,6 +2,7 @@
 using Ships.Common;
 using System.Collections.Generic;
 using Patterns.Decoupling.ServiceLocator;
+using GameAudio;
 
 namespace Ships
 {
@@ -12,6 +13,7 @@ namespace Ships
         private float _remainingSecondsToBeAbleToShoot;
         [SerializeField] private ProjectileFactory _projectileFactory;
                                                                                                                          
+        private AudioService _audioService;
         private string _activeProjectileId;
         private Ship _ship;
         private Teams _team;
@@ -25,7 +27,7 @@ namespace Ships
         private void Start()
         {
             _projectileFactory = ServiceLocator.Instance.GetService<ProjectileFactory>();
-            Debug.LogWarning("modificado del awake al start");   
+            _audioService = ServiceLocator.Instance.GetService<AudioService>();
         }
 
         public void Configure(Ship ship, float fireRate, ProjectileId defaultProjectileId, Teams team)
@@ -57,6 +59,7 @@ namespace Ships
                         );
             _aliveProjectiles.Add(projectile);
             projectile.OnRecycle += OnProjectileDestroy;
+            _audioService.PlaySfx(_team == Teams.Ally ? AudioIds.PlayerShot : AudioIds.EnemyShot);
             _remainingSecondsToBeAbleToShoot = _fireRateInSeconds;           
         }
 

@@ -1,4 +1,5 @@
 using Common;
+using GameAudio;
 using Patterns.Decoupling.ServiceLocator;
 using Patterns.Optimization.ObjectPooling;
 using Ships.Common;
@@ -119,6 +120,7 @@ namespace Ships
             if (isDeath)
             {
                 Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
+                ServiceLocator.Instance.GetService<AudioService>().PlaySfx(AudioIds.Explosion);
                 Recycle();
 
                 var shipDestroyedEventData = new ShipDestroyedEventData(_score,_team, GetInstanceID());

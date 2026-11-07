@@ -284,6 +284,7 @@ GameObject:
   - component: {fileID: 1085969887}
   - component: {fileID: 1085969889}
   - component: {fileID: 1085969890}
+  - component: {fileID: 1085969891}
   m_Layer: 0
   m_Name: GlobalInstaller
   m_TagString: Untagged
@@ -306,6 +307,7 @@ MonoBehaviour:
   _installers:
   - {fileID: 1085969889}
   - {fileID: 1085969890}
+  - {fileID: 1085969891}
 --- !u!4 &1085969888
 Transform:
   m_ObjectHideFlags: 0
@@ -346,6 +348,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _EventQueue: {fileID: 2098969100}
+--- !u!114 &1085969891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1085969886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f117938954f4528b76c3817c527e5f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _configuration: {fileID: 11400000, guid: d83c9af6a35344f9b99a4dc2871bc01d, type: 2}
 --- !u!1 &2098969099
 GameObject:
   m_ObjectHideFlags: 0

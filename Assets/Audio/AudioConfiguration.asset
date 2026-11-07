@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65fb357bc76042d389c9f91b4a675d30, type: 3}
+  m_Name: AudioConfiguration
+  m_EditorClassIdentifier: 
+  _entries:
+  - _id: 0
+    _clips:
+    - {fileID: 8300000, guid: 05a5681d31e8ec84983c8d37799b76b7, type: 3}
+    _volume: 0.5
+    _pitchVariation: 0
+  - _id: 1
+    _clips:
+    - {fileID: 8300000, guid: dd7b156fb4d2d334aa76245438833236, type: 3}
+    _volume: 0.5
+    _pitchVariation: 0
+  - _id: 2
+    _clips:
+    - {fileID: 8300000, guid: a698f8533760466469cb1aafa5163bc9, type: 3}
+    - {fileID: 8300000, guid: 1fb42cffe361d964bb0ff1a379642e7f, type: 3}
+    _volume: 0.35
+    _pitchVariation: 0.1
+  - _id: 3
+    _clips:
+    - {fileID: 8300000, guid: 2f34dbb4e117fe041a4799ba61c99491, type: 3}
+    - {fileID: 8300000, guid: 46b3bced21fe84f43ba378d92809d42f, type: 3}
+    _volume: 0.25
+    _pitchVariation: 0.1
+  - _id: 4
+    _clips:
+    - {fileID: 8300000, guid: 5b68649e86d90194cb2f4b4eadae731c, type: 3}
+    _volume: 0.7
+    _pitchVariation: 0.1
+  - _id: 5
+    _clips:
+    - {fileID: 8300000, guid: f5b35fc2d6c950041b5c313b41b497ef, type: 3}
+    - {fileID: 8300000, guid: 79a4328642fa1224fa8785845b3bb9a5, type: 3}
+    _volume: 0.9
+    _pitchVariation: 0
+  - _id: 6
+    _clips:
+    - {fileID: 8300000, guid: 79f7fc4693f1ff24296a726d4e917105, type: 3}
+    - {fileID: 8300000, guid: e4c2d31be2e61cf4ca870004f94c2f84, type: 3}
+    _volume: 0.9
+    _pitchVariation: 0
+  - _id: 7
+    _clips:
+    - {fileID: 8300000, guid: 3ee4c408631a9504c93e39231c4e9d07, type: 3}
+    - {fileID: 8300000, guid: 51687393177b8ca4283278dcaf27312b, type: 3}
+    _volume: 0.8
+    _pitchVariation: 0
+  - _id: 8
+    _clips:
+    - {fileID: 8300000, guid: 5e17c9afbbc90494ba950b1bc0adaad0, type: 3}
+    _volume: 0.8
+    _pitchVariation: 0
+  _initialSfxPoolSize: 16

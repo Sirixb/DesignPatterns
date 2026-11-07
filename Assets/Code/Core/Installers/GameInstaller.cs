@@ -1,4 +1,5 @@
 ﻿using Battle;
+using GameAudio;
 using Patterns.Decoupling.ServiceLocator;
 using Ships;
 using Ships.Common;
@@ -23,6 +24,7 @@ namespace Core.Installers
 
         protected override void DoStart()
         {
+            ServiceLocator.Instance.GetService<AudioService>().PlayMusic(AudioIds.GameplayMusic);
         }
 
         protected override void DoInstallDependencies()

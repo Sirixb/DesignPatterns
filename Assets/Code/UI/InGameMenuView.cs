@@ -1,6 +1,7 @@
 using Battle;
 using Common;
 using Common.Commands;
+using GameAudio;
 using Patterns.Behaviour.Command;
 using Patterns.Decoupling.ServiceLocator;
 using System;
@@ -46,26 +47,35 @@ namespace UI
             _gameOverView.Hide();
         }
       
+        private static void PlaySound(AudioIds id)
+        {
+            ServiceLocator.Instance.GetService<AudioService>().PlaySfx(id);
+        }
+
         private void OnPauseButtonPressed()
         {
+            PlaySound(AudioIds.ButtonClick);
             _commandQueue.AddCommand(new PauseGameCommand());
             _pauseMenuView.Show(); 
         }
 
         public void OnBackToMenuPressed()
         {
+            PlaySound(AudioIds.ButtonClick);
             _commandQueue.AddCommand(new LoadSceneCommand("Menu"));
             ResumeGame();
         }
 
         public void OnResumeGamePressed()
         {
+            PlaySound(AudioIds.ButtonClick);
             _pauseMenuView.Hide();
             ResumeGame();
         } 
 
         public void OnRestartGamePressed()
         {
+            PlaySound(AudioIds.ButtonConfirm);
             HideAllMenus();
             ResumeGame();
             _commandQueue.AddCommand(new RestartBattleCommand());
