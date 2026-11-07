@@ -30,6 +30,9 @@
 # Visual Studio cache directory
 .vs/
 
+# Visual Studio Code (generado por el paquete de Unity)
+.vscode/
+
 # Gradle cache directory
 .gradle/
 
