@@ -19,3 +19,4 @@ MonoBehaviour:
   - {fileID: 3982472195643883701, guid: 0aefbdfa67981974ea9cd3407b084876, type: 3}
   - {fileID: 3982472195643883701, guid: ebc78d963e0b3864e8573e52f7022d7f, type: 3}
   - {fileID: 3982472195643883701, guid: 97f961f2077605d4382f76430facc93e, type: 3}
+  _initialPoolSize: 10

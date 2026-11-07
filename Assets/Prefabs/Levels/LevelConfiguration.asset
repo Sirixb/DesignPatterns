@@ -17,6 +17,177 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 3ae1c93bb420a46d6bd5aa3a8d41806b, type: 2}
     - {fileID: 11400000, guid: 3ae1c93bb420a46d6bd5aa3a8d41806b, type: 2}
     - {fileID: 11400000, guid: 3ae1c93bb420a46d6bd5aa3a8d41806b, type: 2}
-    - {fileID: 11400000, guid: 3ae1c93bb420a46d6bd5aa3a8d41806b, type: 2}
-    - {fileID: 11400000, guid: 3ae1c93bb420a46d6bd5aa3a8d41806b, type: 2}
     _timeToSpawn: 1
+  - _shipToSpawnConfigurations:
+    - {fileID: 11400000, guid: bee310eac37a542f7a921e274d710e05, type: 2}
+    - {fileID: 11400000, guid: bee310eac37a542f7a921e274d710e05, type: 2}
+    - {fileID: 11400000, guid: bee310eac37a542f7a921e274d710e05, type: 2}
+    - {fileID: 11400000, guid: bee310eac37a542f7a921e274d710e05, type: 2}
+    - {fileID: 11400000, guid: bee310eac37a542f7a921e274d710e05, type: 2}
+    _timeToSpawn: 6
+  - _shipToSpawnConfigurations:
+    - {fileID: 11400000, guid: 3ae1c93bb420a46d6bd5aa3a8d41806b, type: 2}
+    - {fileID: 11400000, guid: bee310eac37a542f7a921e274d710e05, type: 2}
+    - {fileID: 11400000, guid: 3ae1c93bb420a46d6bd5aa3a8d41806b, type: 2}
+    - {fileID: 11400000, guid: bee310eac37a542f7a921e274d710e05, type: 2}
+    - {fileID: 11400000, guid: 3ae1c93bb420a46d6bd5aa3a8d41806b, type: 2}
+    _timeToSpawn: 12
+  - _shipToSpawnConfigurations:
+    - {fileID: 11400000, guid: 0e671a932aefc1d48b7494a29026029f, type: 2}
+    - {fileID: 11400000, guid: 0e671a932aefc1d48b7494a29026029f, type: 2}
+    - {fileID: 11400000, guid: 0e671a932aefc1d48b7494a29026029f, type: 2}
+    _timeToSpawn: 18
+  - _shipToSpawnConfigurations:
+    - {fileID: 11400000, guid: 0e671a932aefc1d48b7494a29026029f, type: 2}
+    - {fileID: 11400000, guid: 3ae1c93bb420a46d6bd5aa3a8d41806b, type: 2}
+    - {fileID: 11400000, guid: 0e671a932aefc1d48b7494a29026029f, type: 2}
+    - {fileID: 11400000, guid: 3ae1c93bb420a46d6bd5aa3a8d41806b, type: 2}
+    - {fileID: 11400000, guid: 0e671a932aefc1d48b7494a29026029f, type: 2}
+    _timeToSpawn: 24
+  - _shipToSpawnConfigurations:
+    - {fileID: 11400000, guid: ea09676ba8091b7488123a5bfe0ed2e3, type: 2}
+    - {fileID: 11400000, guid: ea09676ba8091b7488123a5bfe0ed2e3, type: 2}
+    - {fileID: 11400000, guid: ea09676ba8091b7488123a5bfe0ed2e3, type: 2}
+    - {fileID: 11400000, guid: ea09676ba8091b7488123a5bfe0ed2e3, type: 2}
+    - {fileID: 11400000, guid: ea09676ba8091b7488123a5bfe0ed2e3, type: 2}
+    _timeToSpawn: 30
+  - _shipToSpawnConfigurations:
+    - {fileID: 11400000, guid: 0e671a932aefc1d48b7494a29026029f, type: 2}
+    - {fileID: 11400000, guid: 0e671a932aefc1d48b7494a29026029f, type: 2}
+    - {fileID: 11400000, guid: 0e671a932aefc1d48b7494a29026029f, type: 2}
+    - {fileID: 11400000, guid: 0e671a932aefc1d48b7494a29026029f, type: 2}
+    - {fileID: 11400000, guid: 0e671a932aefc1d48b7494a29026029f, type: 2}
+    _timeToSpawn: 36
+  - _shipToSpawnConfigurations:
+    - {fileID: 11400000, guid: ea09676ba8091b7488123a5bfe0ed2e3, type: 2}
+    - {fileID: 11400000, guid: 0e671a932aefc1d48b7494a29026029f, type: 2}
+    - {fileID: 11400000, guid: ea09676ba8091b7488123a5bfe0ed2e3, type: 2}
+    - {fileID: 11400000, guid: 0e671a932aefc1d48b7494a29026029f, type: 2}
+    - {fileID: 11400000, guid: ea09676ba8091b7488123a5bfe0ed2e3, type: 2}
+    _timeToSpawn: 42
+  - _shipToSpawnConfigurations:
+    - {fileID: 11400000, guid: 7e46e34448fd0074393aace2a7338cc9, type: 2}
+    - {fileID: 11400000, guid: ba1291fbb522a474f96b6d97000540c2, type: 2}
+    - {fileID: 11400000, guid: b9e784176231d25469ecd57ccaa78111, type: 2}
+    - {fileID: 11400000, guid: a1dc0df9cc4e6f446875b492a5f24375, type: 2}
+    - {fileID: 11400000, guid: c569979487d42fd4a87096bc05471cfa, type: 2}
+    _timeToSpawn: 50
+  - _shipToSpawnConfigurations:
+    - {fileID: 11400000, guid: ea09676ba8091b7488123a5bfe0ed2e3, type: 2}
+    - {fileID: 11400000, guid: ea09676ba8091b7488123a5bfe0ed2e3, type: 2}
+    - {fileID: 11400000, guid: ea09676ba8091b7488123a5bfe0ed2e3, type: 2}
+    - {fileID: 11400000, guid: ea09676ba8091b7488123a5bfe0ed2e3, type: 2}
+    - {fileID: 11400000, guid: ea09676ba8091b7488123a5bfe0ed2e3, type: 2}
+    _timeToSpawn: 53
+  - _shipToSpawnConfigurations:
+    - {fileID: 11400000, guid: 0e671a932aefc1d48b7494a29026029f, type: 2}
+    - {fileID: 11400000, guid: 39a3cf7d890d4ea9a7bf06e7ec1dc6b7, type: 2}
+    - {fileID: 11400000, guid: 0e671a932aefc1d48b7494a29026029f, type: 2}
+    - {fileID: 11400000, guid: 39a3cf7d890d4ea9a7bf06e7ec1dc6b7, type: 2}
+    - {fileID: 11400000, guid: 0e671a932aefc1d48b7494a29026029f, type: 2}
+    _timeToSpawn: 60
+  - _shipToSpawnConfigurations:
+    - {fileID: 11400000, guid: ea09676ba8091b7488123a5bfe0ed2e3, type: 2}
+    - {fileID: 11400000, guid: ea09676ba8091b7488123a5bfe0ed2e3, type: 2}
+    - {fileID: 11400000, guid: ea09676ba8091b7488123a5bfe0ed2e3, type: 2}
+    - {fileID: 11400000, guid: ea09676ba8091b7488123a5bfe0ed2e3, type: 2}
+    - {fileID: 11400000, guid: ea09676ba8091b7488123a5bfe0ed2e3, type: 2}
+    _timeToSpawn: 66
+  - _shipToSpawnConfigurations:
+    - {fileID: 11400000, guid: 98746b8d16234f3db97be1054e64e798, type: 2}
+    - {fileID: 11400000, guid: ea09676ba8091b7488123a5bfe0ed2e3, type: 2}
+    - {fileID: 11400000, guid: 98746b8d16234f3db97be1054e64e798, type: 2}
+    - {fileID: 11400000, guid: ea09676ba8091b7488123a5bfe0ed2e3, type: 2}
+    - {fileID: 11400000, guid: 98746b8d16234f3db97be1054e64e798, type: 2}
+    _timeToSpawn: 72
+  - _shipToSpawnConfigurations:
+    - {fileID: 11400000, guid: 39a3cf7d890d4ea9a7bf06e7ec1dc6b7, type: 2}
+    - {fileID: 11400000, guid: ea09676ba8091b7488123a5bfe0ed2e3, type: 2}
+    - {fileID: 11400000, guid: 39a3cf7d890d4ea9a7bf06e7ec1dc6b7, type: 2}
+    - {fileID: 11400000, guid: ea09676ba8091b7488123a5bfe0ed2e3, type: 2}
+    - {fileID: 11400000, guid: 39a3cf7d890d4ea9a7bf06e7ec1dc6b7, type: 2}
+    _timeToSpawn: 78
+  - _shipToSpawnConfigurations:
+    - {fileID: 11400000, guid: 0e671a932aefc1d48b7494a29026029f, type: 2}
+    - {fileID: 11400000, guid: 0e671a932aefc1d48b7494a29026029f, type: 2}
+    - {fileID: 11400000, guid: 0e671a932aefc1d48b7494a29026029f, type: 2}
+    - {fileID: 11400000, guid: 0e671a932aefc1d48b7494a29026029f, type: 2}
+    - {fileID: 11400000, guid: 0e671a932aefc1d48b7494a29026029f, type: 2}
+    _timeToSpawn: 84
+  - _shipToSpawnConfigurations:
+    - {fileID: 11400000, guid: 030e9a9d611669047ba205026353e3f6, type: 2}
+    - {fileID: 11400000, guid: 0e671a932aefc1d48b7494a29026029f, type: 2}
+    - {fileID: 11400000, guid: 0e671a932aefc1d48b7494a29026029f, type: 2}
+    - {fileID: 11400000, guid: 0e671a932aefc1d48b7494a29026029f, type: 2}
+    - {fileID: 11400000, guid: 0e671a932aefc1d48b7494a29026029f, type: 2}
+    _timeToSpawn: 90
+  - _shipToSpawnConfigurations:
+    - {fileID: 11400000, guid: ea09676ba8091b7488123a5bfe0ed2e3, type: 2}
+    - {fileID: 11400000, guid: ea09676ba8091b7488123a5bfe0ed2e3, type: 2}
+    - {fileID: 11400000, guid: ea09676ba8091b7488123a5bfe0ed2e3, type: 2}
+    - {fileID: 11400000, guid: ea09676ba8091b7488123a5bfe0ed2e3, type: 2}
+    - {fileID: 11400000, guid: ea09676ba8091b7488123a5bfe0ed2e3, type: 2}
+    _timeToSpawn: 150
+  - _shipToSpawnConfigurations:
+    - {fileID: 11400000, guid: 98746b8d16234f3db97be1054e64e798, type: 2}
+    - {fileID: 11400000, guid: 98746b8d16234f3db97be1054e64e798, type: 2}
+    - {fileID: 11400000, guid: 98746b8d16234f3db97be1054e64e798, type: 2}
+    - {fileID: 11400000, guid: 98746b8d16234f3db97be1054e64e798, type: 2}
+    - {fileID: 11400000, guid: 98746b8d16234f3db97be1054e64e798, type: 2}
+    _timeToSpawn: 154
+  - _shipToSpawnConfigurations:
+    - {fileID: 11400000, guid: 39a3cf7d890d4ea9a7bf06e7ec1dc6b7, type: 2}
+    - {fileID: 11400000, guid: 98746b8d16234f3db97be1054e64e798, type: 2}
+    - {fileID: 11400000, guid: 39a3cf7d890d4ea9a7bf06e7ec1dc6b7, type: 2}
+    - {fileID: 11400000, guid: 98746b8d16234f3db97be1054e64e798, type: 2}
+    - {fileID: 11400000, guid: 39a3cf7d890d4ea9a7bf06e7ec1dc6b7, type: 2}
+    _timeToSpawn: 160
+  - _shipToSpawnConfigurations:
+    - {fileID: 11400000, guid: ea09676ba8091b7488123a5bfe0ed2e3, type: 2}
+    - {fileID: 11400000, guid: 39a3cf7d890d4ea9a7bf06e7ec1dc6b7, type: 2}
+    - {fileID: 11400000, guid: ea09676ba8091b7488123a5bfe0ed2e3, type: 2}
+    - {fileID: 11400000, guid: 39a3cf7d890d4ea9a7bf06e7ec1dc6b7, type: 2}
+    - {fileID: 11400000, guid: ea09676ba8091b7488123a5bfe0ed2e3, type: 2}
+    _timeToSpawn: 166
+  - _shipToSpawnConfigurations:
+    - {fileID: 11400000, guid: 98746b8d16234f3db97be1054e64e798, type: 2}
+    - {fileID: 11400000, guid: 39a3cf7d890d4ea9a7bf06e7ec1dc6b7, type: 2}
+    - {fileID: 11400000, guid: 98746b8d16234f3db97be1054e64e798, type: 2}
+    - {fileID: 11400000, guid: 39a3cf7d890d4ea9a7bf06e7ec1dc6b7, type: 2}
+    - {fileID: 11400000, guid: 98746b8d16234f3db97be1054e64e798, type: 2}
+    _timeToSpawn: 172
+  - _shipToSpawnConfigurations:
+    - {fileID: 11400000, guid: ea09676ba8091b7488123a5bfe0ed2e3, type: 2}
+    - {fileID: 11400000, guid: ea09676ba8091b7488123a5bfe0ed2e3, type: 2}
+    - {fileID: 11400000, guid: ea09676ba8091b7488123a5bfe0ed2e3, type: 2}
+    - {fileID: 11400000, guid: ea09676ba8091b7488123a5bfe0ed2e3, type: 2}
+    - {fileID: 11400000, guid: ea09676ba8091b7488123a5bfe0ed2e3, type: 2}
+    _timeToSpawn: 180
+  - _shipToSpawnConfigurations:
+    - {fileID: 11400000, guid: 98746b8d16234f3db97be1054e64e798, type: 2}
+    - {fileID: 11400000, guid: 98746b8d16234f3db97be1054e64e798, type: 2}
+    - {fileID: 11400000, guid: 98746b8d16234f3db97be1054e64e798, type: 2}
+    - {fileID: 11400000, guid: 98746b8d16234f3db97be1054e64e798, type: 2}
+    - {fileID: 11400000, guid: 98746b8d16234f3db97be1054e64e798, type: 2}
+    _timeToSpawn: 184
+  - _shipToSpawnConfigurations:
+    - {fileID: 11400000, guid: 39a3cf7d890d4ea9a7bf06e7ec1dc6b7, type: 2}
+    - {fileID: 11400000, guid: 39a3cf7d890d4ea9a7bf06e7ec1dc6b7, type: 2}
+    - {fileID: 11400000, guid: 39a3cf7d890d4ea9a7bf06e7ec1dc6b7, type: 2}
+    - {fileID: 11400000, guid: 39a3cf7d890d4ea9a7bf06e7ec1dc6b7, type: 2}
+    - {fileID: 11400000, guid: 39a3cf7d890d4ea9a7bf06e7ec1dc6b7, type: 2}
+    _timeToSpawn: 188
+  - _shipToSpawnConfigurations:
+    - {fileID: 11400000, guid: 98746b8d16234f3db97be1054e64e798, type: 2}
+    - {fileID: 11400000, guid: ea09676ba8091b7488123a5bfe0ed2e3, type: 2}
+    - {fileID: 11400000, guid: 98746b8d16234f3db97be1054e64e798, type: 2}
+    - {fileID: 11400000, guid: ea09676ba8091b7488123a5bfe0ed2e3, type: 2}
+    - {fileID: 11400000, guid: 98746b8d16234f3db97be1054e64e798, type: 2}
+    _timeToSpawn: 194
+  - _shipToSpawnConfigurations:
+    - {fileID: 11400000, guid: 00c829deaaff4ac0951228703f3ef5ae, type: 2}
+    - {fileID: 11400000, guid: 39a3cf7d890d4ea9a7bf06e7ec1dc6b7, type: 2}
+    - {fileID: 11400000, guid: 98746b8d16234f3db97be1054e64e798, type: 2}
+    - {fileID: 11400000, guid: 39a3cf7d890d4ea9a7bf06e7ec1dc6b7, type: 2}
+    - {fileID: 11400000, guid: 98746b8d16234f3db97be1054e64e798, type: 2}
+    _timeToSpawn: 200
