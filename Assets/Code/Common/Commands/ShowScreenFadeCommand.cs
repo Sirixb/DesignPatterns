@@ -1,3 +1,4 @@
+using Common.Utils;
 using System.Threading.Tasks;
 using Patterns.Behaviour.Command;
 using Patterns.Decoupling.ServiceLocator;
@@ -11,7 +12,7 @@ namespace Common.Commands
         {
             var serviceLocator = ServiceLocator.Instance;
             serviceLocator.GetService<ScreenFade>().Show();
-            await Task.Delay(200);
+            await TaskUtils.Delay(200);
         }
     }
 }

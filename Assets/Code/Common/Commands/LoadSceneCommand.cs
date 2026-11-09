@@ -1,3 +1,4 @@
+using Common.Utils;
 using System.Threading.Tasks;
 using Patterns.Behaviour.Command;
 using Patterns.Decoupling.ServiceLocator;
@@ -20,7 +21,7 @@ namespace Common.Commands
             var loadingScreen = ServiceLocator.Instance.GetService<LoadingScreen>();
             loadingScreen.Show();
             await LoadScene(_sceneToLoad);
-            await Task.Delay(2000);
+            await TaskUtils.Delay(2000);
             loadingScreen.Hide();
         }
 
