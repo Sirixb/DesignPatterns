@@ -8,6 +8,8 @@ namespace Ships
 {
     public class WeaponController: MonoBehaviour
     {
+        private const float MinFireRateInSeconds = 0.05f;
+
         private float _fireRateInSeconds;
         [SerializeField] private Transform _projectileSpawnPosition;
         private float _remainingSecondsToBeAbleToShoot;
@@ -36,6 +38,11 @@ namespace Ships
             _activeProjectileId = defaultProjectileId.Value;
             _fireRateInSeconds = fireRate;
             _team = team;
+        }
+
+        public void MultiplyFireRate(float factor)
+        {
+            _fireRateInSeconds = Mathf.Max(MinFireRateInSeconds, _fireRateInSeconds * factor);
         }
 
         public void TryShoot()

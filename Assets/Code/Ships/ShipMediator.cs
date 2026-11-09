@@ -2,6 +2,7 @@ using Common;
 using GameAudio;
 using Patterns.Decoupling.ServiceLocator;
 using Patterns.Optimization.ObjectPooling;
+using Pickups;
 using Ships.Common;
 using Ships.Weapons;
 using UI;
@@ -25,6 +26,9 @@ namespace Ships
         private Teams _team;
         private int _score;
         private CheckDestroyLimits _checkDestroyLimits;
+        private PickupIds _drop;
+
+        public Teams Team => _team;
 
         internal override void Init()
         {
@@ -66,6 +70,7 @@ namespace Ships
             _team = configuration.Team;
             _score = configuration.Score;
             _checkDestroyLimits = configuration.CheckDestroyLimits;
+            _drop = configuration.Drop;
         }
 
        private void FixedUpdate()
@@ -115,6 +120,11 @@ namespace Ships
             damageable.AddDamage(1);
         }
         
+        public void MultiplyFireRate(float factor)
+        {
+            _weaponController.MultiplyFireRate(factor);
+        }
+
         public void OnDamageReceived(bool isDeath)
         {
             if (isDeath)
@@ -123,7 +133,7 @@ namespace Ships
                 ServiceLocator.Instance.GetService<AudioService>().PlaySfx(AudioIds.Explosion);
                 Recycle();
 
-                var shipDestroyedEventData = new ShipDestroyedEventData(_score,_team, GetInstanceID());
+                var shipDestroyedEventData = new ShipDestroyedEventData(_score, _team, GetInstanceID(), transform.position, _drop);
                 ServiceLocator.Instance.GetService<EventQueue>().EnqueueEvent(shipDestroyedEventData);
             }
         }

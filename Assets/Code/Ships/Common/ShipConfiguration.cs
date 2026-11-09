@@ -1,3 +1,4 @@
+using Pickups;
 using Ships.Weapons;
 using UnityEngine;
 
@@ -15,10 +16,12 @@ namespace Ships.Common
         public readonly Teams Team;
         public readonly int Score;
         public readonly CheckDestroyLimits CheckDestroyLimits;
+        public readonly PickupIds Drop;
 
         public ShipConfiguration(Input.Input input, CheckLimits.CheckLimits checkLimits,
                                  Vector2 speed, int health, float fireRate,
-                                 ProjectileId defaultProjectileId,Teams team, int score, CheckDestroyLimits checkDestroyLimits)
+                                 ProjectileId defaultProjectileId,Teams team, int score, CheckDestroyLimits checkDestroyLimits,
+                                 PickupIds drop = PickupIds.None)
         {
             Input = input;
             CheckLimits = checkLimits;
@@ -29,6 +32,7 @@ namespace Ships.Common
             Team = team;
             Score = score;
             CheckDestroyLimits = checkDestroyLimits;
+            Drop = drop;
         }
 
     }

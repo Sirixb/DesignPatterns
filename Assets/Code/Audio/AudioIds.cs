@@ -11,6 +11,7 @@ namespace GameAudio
         GameOver,
         Victory,
         ButtonClick,
-        ButtonConfirm
+        ButtonConfirm,
+        Pickup
     }
 }

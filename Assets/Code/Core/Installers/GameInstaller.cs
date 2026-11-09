@@ -1,5 +1,7 @@
 ﻿using Battle;
+using Common;
 using GameAudio;
+using Pickups;
 using Patterns.Decoupling.ServiceLocator;
 using Ships;
 using Ships.Common;
@@ -21,10 +23,16 @@ namespace Core.Installers
 
         [SerializeField] private ShipsConfiguration _shipsConfiguration;
         [SerializeField] private ProjectilesConfiguration _projectilesConfiguration;
+        [SerializeField] private PickupsConfiguration _pickupsConfiguration;
+
+        private PickupDropper _pickupDropper;
 
         protected override void DoStart()
         {
             ServiceLocator.Instance.GetService<AudioService>().PlayMusic(AudioIds.GameplayMusic);
+
+            _pickupDropper = new PickupDropper(ServiceLocator.Instance.GetService<PickupFactory>());
+            _pickupDropper.Subscribe(ServiceLocator.Instance.GetService<EventQueue>());
         }
 
         protected override void DoInstallDependencies()
@@ -36,6 +44,7 @@ namespace Core.Installers
             ServiceLocator.Instance.RegisterService(_screenFade);
 
             InstallProjectileFactory();
+            InstallPickupFactory();
             InstallShipFactory();
         }
 
@@ -45,6 +54,12 @@ namespace Core.Installers
             ServiceLocator.Instance.RegisterService(shipFactory);
         }
 
+        private void InstallPickupFactory()
+        {
+            var pickupFactory = new PickupFactory(Instantiate(_pickupsConfiguration));
+            ServiceLocator.Instance.RegisterService(pickupFactory);
+        }
+
         private void InstallProjectileFactory()
         {
             var projectileFactory = new ProjectileFactory(Instantiate(_projectilesConfiguration));
@@ -52,6 +67,11 @@ namespace Core.Installers
         }
         private void OnDestroy()
         {
+            if (_pickupDropper != null)
+            {
+                _pickupDropper.Unsubscribe(ServiceLocator.Instance.GetService<EventQueue>());
+            }
+
             ServiceLocator.Instance.UnregisterService<ScoreView>();
             ServiceLocator.Instance.UnregisterService<ShipInstaller>();
             ServiceLocator.Instance.UnregisterService<EnemySpawner>();
@@ -59,6 +79,7 @@ namespace Core.Installers
             ServiceLocator.Instance.UnregisterService<ScreenFade>();
             ServiceLocator.Instance.UnregisterService<ShipFactory>();
             ServiceLocator.Instance.UnregisterService<ProjectileFactory>();
+            ServiceLocator.Instance.UnregisterService<PickupFactory>();
         }
     }
 }

@@ -1267,6 +1267,7 @@ MonoBehaviour:
   _screenFade: {fileID: 1650853013}
   _shipsConfiguration: {fileID: 11400000, guid: f5ba05773de544dcdb1614a2e44e290f, type: 2}
   _projectilesConfiguration: {fileID: 11400000, guid: 162033837e71dcc4293ddc7182055b1e, type: 2}
+  _pickupsConfiguration: {fileID: 11400000, guid: 2a2cd0c4897b45328a589fdd08ed06d0, type: 2}
 --- !u!1001 &505169521
 PrefabInstance:
   m_ObjectHideFlags: 0

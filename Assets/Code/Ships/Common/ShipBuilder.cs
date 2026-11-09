@@ -159,7 +159,8 @@ namespace Ships.Common
                                                           _shipConfiguration.DefaultProjectileId,
                                                           _team,
                                                           _shipConfiguration.Score,
-                                                          _checkDestroyLimits);
+                                                          _checkDestroyLimits,
+                                                          _shipConfiguration.Drop);
             ship.Configure(shipConfiguration);
             return ship;
         }

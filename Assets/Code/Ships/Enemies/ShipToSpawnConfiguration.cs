@@ -1,3 +1,4 @@
+using Pickups;
 using Ships.Weapons;
 using UnityEngine;
 
@@ -12,6 +13,8 @@ namespace Ships.Enemies
         [SerializeField] private float _fireRate;
         [SerializeField] private int _health;
         [SerializeField] private int _score;
+        [Tooltip("Pickup dropped when this ship is destroyed by the player.")]
+        [SerializeField] private PickupIds _drop;
 
         public ShipId ShipId => _shipId;
         public ProjectileId DefaultProjectileId => _defaultProjectileId;
@@ -19,6 +22,7 @@ namespace Ships.Enemies
         public float FireRate => _fireRate;
         public int Health => _health;
         public int Score  => _score;
+        public PickupIds Drop => _drop;
 
     }
 }

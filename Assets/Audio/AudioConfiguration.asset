@@ -63,4 +63,9 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 5e17c9afbbc90494ba950b1bc0adaad0, type: 3}
     _volume: 0.8
     _pitchVariation: 0
+  - _id: 9
+    _clips:
+    - {fileID: 8300000, guid: 307709a743dde534f82a929e6d52e53e, type: 3}
+    _volume: 0.8
+    _pitchVariation: 0
   _initialSfxPoolSize: 16

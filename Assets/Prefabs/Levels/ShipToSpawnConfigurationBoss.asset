@@ -18,3 +18,4 @@ MonoBehaviour:
   _fireRate: 0.3
   _health: 20
   _score: 100
+  _drop: 1
